@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap MOBI 2026 · Banco Supervielle</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Trebuchet MS',Arial,sans-serif;background:#F7F3EE;min-height:100vh}
+
+.hdr{background:#fff;border-bottom:3px solid #E8001C;padding:20px 32px;display:flex;justify-content:space-between;align-items:flex-end}
+.eye{font-size:10px;font-weight:700;letter-spacing:.14em;color:#E8001C;text-transform:uppercase;margin-bottom:5px}
+.ttl{font-size:24px;font-weight:900;color:#2D2D2D}
+.sub{font-size:11px;color:#AAA;margin-top:3px}
+.hdr-r .dl{font-size:9px;color:#AAA;text-transform:uppercase;letter-spacing:.07em}
+.hdr-r .dv{font-size:16px;font-weight:900;color:#2D2D2D;text-align:right}
+
+.stat-bar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));background:#fff;border-bottom:1px solid #EDE8E2}
+.st{padding:12px 16px;border-right:1px solid #EDE8E2;cursor:pointer;transition:background .12s;position:relative}
+.st:last-child{border-right:none}
+.st:hover{background:#FFF5F5}
+.st.on{background:#FFF5F5}
+.st.on::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:#E8001C}
+.st-n{font-size:22px;font-weight:900;line-height:1}
+.st-l{font-size:9px;color:#AAA;text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.c-total{color:#2D2D2D}.c-done{color:#16a34a}.c-wip{color:#E8001C}
+.c-todo{color:#6B7280}.c-hold{color:#d97706}.c-anal{color:#7C3AED}.c-dep{color:#9CA3AF}
+
+.body{padding:20px 32px;display:flex;flex-direction:column;gap:14px}
+.row2{display:flex;gap:14px;align-items:flex-start}
+
+.panel{background:#fff;border-radius:8px;border:1px solid #EDE8E2;padding:16px}
+.ptitle{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#BBB;margin-bottom:12px}
+
+.donut-wrap{width:130px;height:130px;position:relative;margin:0 auto 14px}
+.donut-wrap canvas{display:block;width:130px!important;height:130px!important}
+.dc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
+.dc-n{font-size:26px;font-weight:900;color:#2D2D2D;line-height:1}
+.dc-l{font-size:9px;color:#AAA;text-transform:uppercase}
+.leg{display:flex;flex-direction:column;gap:5px}
+.lr{display:flex;align-items:center;justify-content:space-between;font-size:11px;padding:3px 6px;border-radius:4px;cursor:pointer;transition:background .1s}
+.lr:hover{background:#F7F3EE}
+.lr.dim{opacity:.3}
+.lr-l{display:flex;align-items:center;gap:7px}
+.ldot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.lname{color:#2D2D2D;font-weight:500}
+.lcount{font-weight:900;color:#2D2D2D;font-size:12px}
+
+.filters-panel{flex:1;display:flex;flex-direction:column;gap:12px}
+.talla-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}
+.tipo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.fb{background:#F7F3EE;border:1.5px solid transparent;border-radius:6px;padding:10px 6px;text-align:center;cursor:pointer;transition:all .13s;user-select:none}
+.fb:hover{border-color:#E8001C;background:#FFF8F8}
+.fb.on{border-color:#E8001C;background:#FFF5F5}
+.fb-sz{font-size:16px;font-weight:900;color:#2D2D2D}
+.fb-lbl{font-size:8px;color:#AAA;text-transform:uppercase;margin-top:2px;line-height:1.2}
+.fb-cnt{font-size:13px;font-weight:900;color:#E8001C;margin-top:3px}
+.bars{display:flex;flex-direction:column;gap:6px}
+.br{display:flex;align-items:center;gap:8px}
+.br-lbl{font-size:9px;color:#AAA;width:80px;text-align:right;flex-shrink:0}
+.br-track{flex:1;height:8px;background:#EDE8E2;border-radius:3px;overflow:hidden}
+.br-fill{height:100%;border-radius:3px;background:#E8001C;transition:width .3s}
+.br-val{font-size:10px;font-weight:700;color:#2D2D2D;width:20px;flex-shrink:0}
+
+.tl-panel{background:#fff;border-radius:8px;border:1px solid #EDE8E2;padding:20px}
+.tl-out{overflow-x:auto;padding-bottom:4px}
+.tl-scroll{min-width:900px;padding:14px 0 4px}
+.tl-body{position:relative;display:flex;justify-content:space-between;align-items:flex-start;padding:0 14px}
+.tl-line{position:absolute;top:14px;left:28px;right:28px;height:3px;background:#EDE8E2;border-radius:2px;z-index:0}
+.tl-prog{position:absolute;left:0;top:0;height:3px;background:#E8001C;width:30%;border-radius:2px}
+.tc{display:flex;flex-direction:column;align-items:center;width:120px;flex-shrink:0;position:relative;z-index:1}
+.nd-wrap{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0;background:#EDE8E2}
+.nd-d{background:#2D2D2D!important;color:#fff}
+.nd-n{background:#E8001C!important;color:#fff;box-shadow:0 0 0 4px #FECACA}
+.nd-s{background:#D1D5DB!important;color:#6B7280}
+.nd-f{background:#EDE8E2!important;color:#BBB;border:2px solid #D1D5DB}
+.tc-date{font-size:11px;font-weight:900;color:#2D2D2D;margin-top:6px;white-space:nowrap}
+.tc-date.r{color:#E8001C}
+.tc-date.g{color:#AAA}
+.tc-q{font-size:9px;color:#BBB;text-transform:uppercase;letter-spacing:.05em;margin-top:1px}
+.tc-cards{display:flex;flex-direction:column;gap:4px;margin-top:10px;width:100%}
+.cc{border-radius:5px;padding:7px 8px;border:1px solid #EDE8E2;border-left:3px solid #D1D5DB;background:#fff}
+.cc.s-done{border-left-color:#2D2D2D;background:#F9F9F9}
+.cc.s-wip{border-left-color:#E8001C}
+.cc.s-wip.delayed{background:#FFF5F5}
+.cc.s-todo{border-left-color:#D1D5DB}
+.cn{font-size:10px;font-weight:700;color:#2D2D2D;line-height:1.3;margin-bottom:4px}
+.bgs{display:flex;gap:2px;flex-wrap:wrap}
+.b{font-size:8px;font-weight:700;padding:1px 5px;border-radius:2px;text-transform:uppercase}
+.b-done{background:#2D2D2D;color:#fff}
+.b-wip{background:#E8001C;color:#fff}
+.b-todo{background:#E5E7EB;color:#374151}
+.b-hold{background:#FEF3C7;color:#92400E}
+.b-anal{background:#EDE9FE;color:#5B21B6}
+.b-dep{background:#F3F4F6;color:#9CA3AF}
+.b-bau{background:#DBEAFE;color:#1e40af}
+.b-nuevo{background:#FCE7F3;color:#831843}
+.b-carry{background:#FEF3C7;color:#78350f}
+.b-delay{background:#FEE2E2;color:#991b1b;font-size:7px}
+.b-sz{background:#F3F4F6;color:#6B7280}
+.nd-empty{font-size:9px;color:#DDD;text-align:center;padding:6px 0}
+
+.tbd-panel{background:#fff;border-radius:8px;border:1px solid #EDE8E2;padding:16px}
+.tbd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:6px}
+.tbd-c{background:#F7F3EE;border-radius:5px;padding:8px 10px;border-left:3px solid #D1D5DB}
+.tbd-c.s-hold{border-left-color:#d97706}
+.tbd-c.s-anal{border-left-color:#7C3AED}
+.tbd-c.s-dep{opacity:.5}
+.tbd-name{font-size:10px;font-weight:700;color:#2D2D2D;margin-bottom:5px;line-height:1.3}
+.empty-msg{font-size:12px;color:#CCC;padding:24px;text-align:center;grid-column:1/-1}
+
+.footer{padding:14px 32px;border-top:1px solid #EDE8E2;display:flex;justify-content:space-between;background:#fff;margin-top:4px}
+.ft{font-size:9px;color:#CCC;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+
+.active-filters{display:flex;gap:6px;flex-wrap:wrap;padding:8px 32px;background:#FFF5F5;border-bottom:1px solid #EDE8E2;min-height:36px;align-items:center}
+.af-label{font-size:10px;color:#AAA;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.af-tag{font-size:10px;font-weight:700;background:#E8001C;color:#fff;padding:2px 8px;border-radius:12px;display:flex;align-items:center;gap:4px;cursor:pointer}
+.af-tag:hover{background:#C00}
+.af-none{font-size:10px;color:#CCC;font-style:italic}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div>
+    <div class="eye">Célula MOBI · Banco Supervielle</div>
+    <div class="ttl">Reporte ejecutivo · Roadmap 2026</div>
+    <div class="sub">42 iniciativas · filtros por estado, talla y tipo · línea de tiempo por fecha comprometida</div>
+  </div>
+  <div class="hdr-r"><div class="dl">Actualización</div><div class="dv">Abril 2026</div></div>
+</div>
+
+<div class="stat-bar">
+  <div class="st on" data-s="all" onclick="setStatus('all')"><div class="st-n c-total" id="cnt-all">42</div><div class="st-l">Total</div></div>
+  <div class="st" data-s="Done" onclick="setStatus('Done')"><div class="st-n c-done" id="cnt-Done">0</div><div class="st-l">Done</div></div>
+  <div class="st" data-s="In-Progress" onclick="setStatus('In-Progress')"><div class="st-n c-wip" id="cnt-In-Progress">0</div><div class="st-l">In-Progress</div></div>
+  <div class="st" data-s="To-do" onclick="setStatus('To-do')"><div class="st-n c-todo" id="cnt-To-do">0</div><div class="st-l">To-do</div></div>
+  <div class="st" data-s="On-Hold" onclick="setStatus('On-Hold')"><div class="st-n c-hold" id="cnt-On-Hold">0</div><div class="st-l">On-Hold</div></div>
+  <div class="st" data-s="Under Analysis" onclick="setStatus('Under Analysis')"><div class="st-n c-anal" id="cnt-Under Analysis">0</div><div class="st-l">Under Analysis</div></div>
+  <div class="st" data-s="Deprioritized" onclick="setStatus('Deprioritized')"><div class="st-n c-dep" id="cnt-Deprioritized">0</div><div class="st-l">Deprioritized</div></div>
+</div>
+
+<div class="active-filters" id="active-filters">
+  <span class="af-label">Filtros:</span>
+  <span class="af-none" id="af-none">ninguno activo</span>
+</div>
+
+<div class="body">
+<div class="row2">
+
+  <div class="panel" style="flex:0 0 220px">
+    <div class="ptitle">Estado · distribución</div>
+    <div class="donut-wrap"><canvas id="donut" width="130" height="130"></canvas><div class="dc"><div class="dc-n" id="donut-n">42</div><div class="dc-l">total</div></div></div>
+    <div class="leg" id="leg"></div>
+  </div>
+
+  <div class="filters-panel">
+    <div class="panel">
+      <div class="ptitle">Filtrar por talla</div>
+      <div class="talla-grid">
+        <div class="fb on" data-t="all" onclick="setTalla('all')"><div class="fb-sz" style="font-size:12px">Todas</div><div class="fb-lbl">tallas</div><div class="fb-cnt" id="tc-all">42</div></div>
+        <div class="fb" data-t="XS" onclick="setTalla('XS')"><div class="fb-sz">XS</div><div class="fb-lbl">1–3 días</div><div class="fb-cnt" id="tc-XS">0</div></div>
+        <div class="fb" data-t="S" onclick="setTalla('S')"><div class="fb-sz">S</div><div class="fb-lbl">1 semana</div><div class="fb-cnt" id="tc-S">0</div></div>
+        <div class="fb" data-t="M" onclick="setTalla('M')"><div class="fb-sz">M</div><div class="fb-lbl">1–2 sprints</div><div class="fb-cnt" id="tc-M">0</div></div>
+        <div class="fb" data-t="L" onclick="setTalla('L')"><div class="fb-sz">L</div><div class="fb-lbl">3–4 sprints</div><div class="fb-cnt" id="tc-L">0</div></div>
+        <div class="fb" data-t="XL" onclick="setTalla('XL')"><div class="fb-sz">XL</div><div class="fb-lbl">5+ sprints</div><div class="fb-cnt" id="tc-XL">0</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="ptitle">Filtrar por tipo de iniciativa</div>
+      <div class="tipo-grid">
+        <div class="fb on" data-tp="all" onclick="setTipo('all')"><div class="fb-sz" style="font-size:12px">Todos</div><div class="fb-lbl">tipos</div><div class="fb-cnt" id="tp-all">42</div></div>
+        <div class="fb" data-tp="BAU" onclick="setTipo('BAU')"><div class="fb-sz" style="font-size:13px">BAU</div><div class="fb-lbl">mantenimiento</div><div class="fb-cnt" id="tp-BAU">0</div></div>
+        <div class="fb" data-tp="Nuevo" onclick="setTipo('Nuevo')"><div class="fb-sz" style="font-size:12px">Nuevo</div><div class="fb-lbl">nueva funcionalidad</div><div class="fb-cnt" id="tp-Nuevo">0</div></div>
+        <div class="fb" data-tp="Carry Over" onclick="setTipo('Carry Over')"><div class="fb-sz" style="font-size:12px">Carry</div><div class="fb-lbl">carry over</div><div class="fb-cnt" id="tp-Carry Over">0</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="ptitle">Distribución por talla · selección actual</div>
+      <div class="bars" id="bars"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="tl-panel">
+  <div class="ptitle">Línea de tiempo · fechas comprometidas (New Due Date)</div>
+  <div class="tl-out">
+    <div class="tl-scroll">
+      <div class="tl-body">
+        <div class="tl-line"><div class="tl-prog"></div></div>
+        <div id="tl-cols" style="display:flex;justify-content:space-between;width:100%;position:relative;z-index:1"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tbd-panel">
+  <div class="ptitle" id="tbd-title">Sin fecha comprometida</div>
+  <div class="tbd-grid" id="tbd-grid"></div>
+</div>
+
+</div>
+<div class="footer">
+  <div class="ft">Supervielle · Célula MOBI</div>
+  <div class="ft">Q1 Ene–Abr · Q2 May–Ago · Q3 Sep–Dic · Abril 2026</div>
+</div>
+
+<script>
+var INITS = [
+  {n:"Sorteo Mundial",s:"Done",t:"Nuevo",sz:"S",f:"27/01",q:"Q1",delayed:false},
+  {n:"Upgrade SDK VU",s:"Done",t:"BAU",sz:"S",f:"05/03",q:"Q1",delayed:false},
+  {n:"Soft token (HOTP)",s:"Done",t:"Nuevo",sz:"L",f:"05/03",q:"Q1",delayed:false},
+  {n:"Rediseño saltos taza de café",s:"Done",t:"BAU",sz:"XS",f:"05/03",q:"Q1",delayed:false},
+  {n:"Desacople auth vs perfil",s:"Done",t:"BAU",sz:"S",f:"26/03",q:"Q1",delayed:false},
+  {n:"Préstamos: home + alta + tenencia",s:"In-Progress",t:"Carry Over",sz:"L",f:"21/04",q:"Q1",delayed:true},
+  {n:"TC pausado adicional",s:"In-Progress",t:"Carry Over",sz:"S",f:"07/05",q:"Q2",delayed:true},
+  {n:"Rediseño cross sell seguros",s:"To-do",t:"Carry Over",sz:"S",f:"07/05",q:"Q2",delayed:false},
+  {n:"AR (2FA)",s:"In-Progress",t:"Carry Over",sz:"S",f:"07/05",q:"Q2",delayed:false},
+  {n:"Android 16 KB",s:"In-Progress",t:"BAU",sz:"S",f:"21/05",q:"Q2",delayed:false},
+  {n:"Upgrade versión flutter",s:"In-Progress",t:"BAU",sz:"S",f:"21/05",q:"Q2",delayed:false},
+  {n:"Rediseño login · splash · auth",s:"In-Progress",t:"Nuevo",sz:"L",f:"21/05",q:"Q2",delayed:true},
+  {n:"Enrolamiento SAAS",s:"To-do",t:"BAU",sz:"M",f:"21/05",q:"Q2",delayed:false},
+  {n:"Facephi IAD",s:"To-do",t:"BAU",sz:"M",f:"21/05",q:"Q2",delayed:false},
+  {n:"APP+AI · Búsqueda movimientos",s:"To-do",t:"Nuevo",sz:"M",f:"11/06",q:"Q2",delayed:false},
+  {n:"Fingerprint",s:"To-do",t:"Nuevo",sz:"M",f:"11/06",q:"Q2",delayed:false},
+  {n:"Clave canales caja rápida",s:"To-do",t:"Nuevo",sz:"S",f:"11/06",q:"Q2",delayed:false},
+  {n:"Rediseño home (Panel acción…)",s:"To-do",t:"Nuevo",sz:"L",f:"25/06",q:"Q2",delayed:false},
+  {n:"Multi 2FA",s:"To-do",t:"Nuevo",sz:"M",f:"25/06",q:"Q2",delayed:false},
+  {n:"Rediseño home evolutivo (socios)",s:"To-do",t:"Nuevo",sz:"M",f:"09/07",q:"Q3",delayed:false},
+  {n:"Préstamos: cancelación",s:"Deprioritized",t:"Nuevo",sz:"S",f:"TBD"},
+  {n:"Autenticación formulario Keycloak",s:"Deprioritized",t:"BAU",sz:"M",f:"TBD"},
+  {n:"TC consumos pendientes",s:"On-Hold",t:"Carry Over",sz:"S",f:"TBD"},
+  {n:"DEBIN",s:"On-Hold",t:"Nuevo",sz:"",f:"TBD"},
+  {n:"Repetir Transferencia (IA)",s:"Under Analysis",t:"Carry Over",sz:"M",f:"TBD"},
+  {n:"Dirección evolutivo (Predictivo & Geo)",s:"On-Hold",t:"BAU",sz:"M",f:"TBD"},
+  {n:"Rediseño enrolamiento",s:"Under Analysis",t:"Nuevo",sz:"L",f:"TBD"},
+  {n:"Facetec",s:"To-do",t:"Nuevo",sz:"L",f:"TBD"},
+  {n:"Rediseño cuentas",s:"To-do",t:"Nuevo",sz:"M",f:"TBD"},
+  {n:"Rediseño menú",s:"To-do",t:"Nuevo",sz:"S",f:"TBD"},
+  {n:"Evolutivo préstamos (Refinanciación)",s:"To-do",t:"Nuevo",sz:"M",f:"TBD"},
+  {n:"Microcrédito pago de servicio",s:"To-do",t:"Nuevo",sz:"L",f:"TBD"},
+  {n:"Rediseño home (cuentas IR)",s:"To-do",t:"Nuevo",sz:"M",f:"TBD"},
+  {n:"Carrusel de pagos",s:"To-do",t:"Nuevo",sz:"L",f:"TBD"},
+  {n:"Onboarding masivo",s:"To-do",t:"Nuevo",sz:"L",f:"TBD"},
+  {n:"Config notificación",s:"To-do",t:"Nuevo",sz:"L",f:"TBD"},
+  {n:"Com. A 8406 – BCRA (CCT)",s:"To-do",t:"Nuevo",sz:"XL",f:"TBD"},
+  {n:"Transferencias · Mejoras mensajes error",s:"Under Analysis",t:"Carry Over",sz:"M",f:"TBD"},
+  {n:"Normativo BCRA · denuncias estafas",s:"To-do",t:"Nuevo",sz:"XS",f:"TBD"},
+  {n:"APP+AI · Transferencia texto/voz",s:"To-do",t:"Nuevo",sz:"L",f:"TBD"},
+  {n:"Migración flujo Botón IOL (MEP)",s:"To-do",t:"Nuevo",sz:"S",f:"TBD"},
+  {n:"Click to Pay · TC Débito MOBILE",s:"To-do",t:"Nuevo",sz:"XL",f:"TBD"},
+];
+
+var MILESTONES = [
+  {f:"27/01",q:"Q1",style:"nd-d",label:"✓",dclass:""},
+  {f:"05/03",q:"Q1",style:"nd-d",label:"✓",dclass:""},
+  {f:"26/03",q:"Q1",style:"nd-d",label:"✓",dclass:""},
+  {f:"21/04",q:"Q1",style:"nd-n",label:"",dclass:"r"},
+  {f:"07/05",q:"Q2",style:"nd-s",label:"",dclass:""},
+  {f:"21/05",q:"Q2",style:"nd-f",label:"",dclass:"g"},
+  {f:"11/06",q:"Q2",style:"nd-f",label:"",dclass:"g"},
+  {f:"25/06",q:"Q2",style:"nd-f",label:"",dclass:"g"},
+  {f:"09/07",q:"Q3",style:"nd-f",label:"",dclass:"g"},
+];
+
+var SC = {
+  "Done":          {color:"#16a34a",bc:"b-done"},
+  "In-Progress":   {color:"#E8001C",bc:"b-wip"},
+  "To-do":         {color:"#6B7280",bc:"b-todo"},
+  "On-Hold":       {color:"#d97706",bc:"b-hold"},
+  "Under Analysis":{color:"#7C3AED",bc:"b-anal"},
+  "Deprioritized": {color:"#9CA3AF",bc:"b-dep"},
+};
+var TC = {"BAU":"b-bau","Nuevo":"b-nuevo","Carry Over":"b-carry"};
+var curS="all", curT="all", curTp="all";
+var chart;
+
+function filtered(){
+  return INITS.filter(function(i){
+    return (curS==="all"||i.s===curS)&&(curT==="all"||i.sz===curT)&&(curTp==="all"||i.t===curTp);
+  });
+}
+function baseForTalla(){
+  return INITS.filter(function(i){return (curS==="all"||i.s===curS)&&(curTp==="all"||i.t===curTp);});
+}
+function baseForTipo(){
+  return INITS.filter(function(i){return (curS==="all"||i.s===curS)&&(curT==="all"||i.sz===curT);});
+}
+
+function render(){
+  var f = filtered();
+  var statuses = ["Done","In-Progress","To-do","On-Hold","Under Analysis","Deprioritized"];
+  var sizes = ["XS","S","M","L","XL"];
+  var tipos = ["BAU","Nuevo","Carry Over"];
+
+  document.getElementById("cnt-all").textContent = f.length;
+  statuses.forEach(function(s){
+    var el = document.getElementById("cnt-"+s);
+    if(el) el.textContent = f.filter(function(i){return i.s===s;}).length;
+  });
+  document.querySelectorAll(".st").forEach(function(el){el.classList.toggle("on",el.dataset.s===curS);});
+
+  var vals = statuses.map(function(s){return f.filter(function(i){return i.s===s;}).length;});
+  var colors = statuses.map(function(s){return SC[s].color;});
+  document.getElementById("donut-n").textContent = f.length;
+  if(!chart){
+    chart = new Chart(document.getElementById("donut").getContext("2d"),{
+      type:"doughnut",
+      data:{labels:statuses,datasets:[{data:vals,backgroundColor:colors,borderWidth:2,borderColor:"#fff"}]},
+      options:{cutout:"68%",plugins:{legend:{display:false},tooltip:{enabled:false}},animation:{duration:200}}
+    });
+  } else {
+    chart.data.datasets[0].data = vals;
+    chart.update();
+  }
+
+  var leg = document.getElementById("leg");
+  leg.innerHTML="";
+  statuses.forEach(function(s){
+    var cnt = f.filter(function(i){return i.s===s;}).length;
+    var row = document.createElement("div");
+    row.className="lr"+(curS!=="all"&&curS!==s?" dim":"");
+    row.onclick=function(){setStatus(s);};
+    row.innerHTML='<div class="lr-l"><div class="ldot" style="background:'+SC[s].color+'"></div><div class="lname">'+s+'</div></div><div class="lcount">'+cnt+'</div>';
+    leg.appendChild(row);
+  });
+
+  var baseT = baseForTalla();
+  document.getElementById("tc-all").textContent = baseT.length;
+  sizes.forEach(function(sz){
+    var el = document.getElementById("tc-"+sz);
+    if(el) el.textContent = baseT.filter(function(i){return i.sz===sz;}).length;
+  });
+  document.querySelectorAll("[data-t]").forEach(function(el){el.classList.toggle("on",el.dataset.t===curT);});
+
+  var baseTp = baseForTipo();
+  document.getElementById("tp-all").textContent = baseTp.length;
+  tipos.forEach(function(tp){
+    var el = document.getElementById("tp-"+tp);
+    if(el) el.textContent = baseTp.filter(function(i){return i.t===tp;}).length;
+  });
+  document.querySelectorAll("[data-tp]").forEach(function(el){el.classList.toggle("on",el.dataset.tp===curTp);});
+
+  var barsEl = document.getElementById("bars");
+  barsEl.innerHTML="";
+  var maxCnt = Math.max.apply(null,sizes.map(function(sz){return f.filter(function(i){return i.sz===sz;}).length;}));
+  if(maxCnt===0) maxCnt=1;
+  var lbls={XS:"XS · 1–3 días",S:"S · 1 semana",M:"M · 1–2 sprints",L:"L · 3–4 sprints",XL:"XL · 5+ sprints"};
+  sizes.forEach(function(sz){
+    var cnt = f.filter(function(i){return i.sz===sz;}).length;
+    var pct = Math.round(cnt/maxCnt*100);
+    barsEl.innerHTML+='<div class="br"><div class="br-lbl">'+lbls[sz]+'</div><div class="br-track"><div class="br-fill" style="width:'+pct+'%"></div></div><div class="br-val">'+cnt+'</div></div>';
+  });
+
+  var tlCols = document.getElementById("tl-cols");
+  tlCols.innerHTML="";
+  MILESTONES.forEach(function(m){
+    var items = f.filter(function(i){return i.f===m.f;});
+    var col = document.createElement("div");
+    col.className="tc";
+    var html='<div class="nd-wrap '+m.style+'">'+m.label+'</div>';
+    html+='<div class="tc-date'+(m.dclass?" "+m.dclass:"")+'">'+m.f+'</div>';
+    html+='<div class="tc-q">'+m.q+'</div>';
+    html+='<div class="tc-cards">';
+    if(items.length===0){
+      html+='<div class="nd-empty">—</div>';
+    } else {
+      items.forEach(function(i){
+        var cls="cc";
+        if(i.s==="Done") cls+=" s-done";
+        else if(i.s==="In-Progress") cls+=" s-wip"+(i.delayed?" delayed":"");
+        else cls+=" s-todo";
+        var sbc=(SC[i.s]||{bc:"b-todo"}).bc;
+        var tbc=TC[i.t]||"b-todo";
+        html+='<div class="'+cls+'"><div class="cn">'+i.n+'</div><div class="bgs">';
+        html+='<span class="b '+sbc+'">'+i.s+'</span>';
+        html+='<span class="b '+tbc+'">'+i.t+'</span>';
+        if(i.sz) html+='<span class="b b-sz">'+i.sz+'</span>';
+        if(i.delayed) html+='<span class="b b-delay">Demorado</span>';
+        html+='</div></div>';
+      });
+    }
+    html+='</div>';
+    col.innerHTML=html;
+    tlCols.appendChild(col);
+  });
+
+  var tbdF = f.filter(function(i){return i.f==="TBD";});
+  document.getElementById("tbd-title").textContent="Sin fecha comprometida · "+tbdF.length+" iniciativas";
+  var grid=document.getElementById("tbd-grid");
+  grid.innerHTML="";
+  if(tbdF.length===0){
+    grid.innerHTML='<div class="empty-msg">Ninguna iniciativa sin fecha coincide con el filtro actual</div>';
+  } else {
+    tbdF.forEach(function(i){
+      var cls="tbd-c";
+      if(i.s==="On-Hold") cls+=" s-hold";
+      else if(i.s==="Under Analysis") cls+=" s-anal";
+      else if(i.s==="Deprioritized") cls+=" s-dep";
+      var sbc=(SC[i.s]||{bc:"b-todo"}).bc;
+      var tbc=TC[i.t]||"b-todo";
+      grid.innerHTML+='<div class="'+cls+'"><div class="tbd-name">'+i.n+'</div><div class="bgs"><span class="b '+sbc+'">'+i.s+'</span><span class="b '+tbc+'">'+i.t+'</span>'+(i.sz?'<span class="b b-sz">'+i.sz+'</span>':'')+'</div></div>';
+    });
+  }
+
+  var af = document.getElementById("active-filters");
+  var afNone = document.getElementById("af-none");
+  var tags = af.querySelectorAll(".af-tag");
+  tags.forEach(function(t){t.remove();});
+  var active = [];
+  if(curS!=="all") active.push({label:"Estado: "+curS, clear:function(){setStatus("all");}});
+  if(curT!=="all") active.push({label:"Talla: "+curT, clear:function(){setTalla("all");}});
+  if(curTp!=="all") active.push({label:"Tipo: "+curTp, clear:function(){setTipo("all");}});
+  afNone.style.display = active.length===0?"":"none";
+  active.forEach(function(a){
+    var tag = document.createElement("span");
+    tag.className="af-tag";
+    tag.innerHTML=a.label+' <span style="font-size:11px;line-height:1">×</span>';
+    tag.onclick=a.clear;
+    af.appendChild(tag);
+  });
+}
+
+function setStatus(s){ curS=(curS===s&&s!=="all")?"all":s; render(); }
+function setTalla(t){ curT=(curT===t&&t!=="all")?"all":t; render(); }
+function setTipo(tp){ curTp=(curTp===tp&&tp!=="all")?"all":tp; render(); }
+
+render();
+</script>
+</body>
+</html>
