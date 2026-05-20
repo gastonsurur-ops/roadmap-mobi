@@ -7,87 +7,127 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f0f5;color:#111}
-.page{max-width:1120px;margin:0 auto;padding:20px 16px}
-.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:12px}
-.logo{display:flex;align-items:center;gap:10px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f0f5;color:#111;font-size:14px}
+.page{max-width:1280px;margin:0 auto;padding:20px 16px}
+
+/* HEADER */
+.page-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .tri{width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:18px solid #EA4E65}
 .ttl{font-size:18px;font-weight:700;color:#111}
-.sub{font-size:12px;color:#888;margin-top:2px}
-.msel{font-size:12px;padding:7px 12px;border-radius:10px;border:1.5px solid #ddd;background:white;color:#333;font-family:inherit;cursor:pointer;font-weight:500}
+.sub{font-size:12px;color:#888;margin-top:1px}
+
+/* CONTROLS — todo alineado a la izquierda */
+.controls{display:flex;flex-direction:column;gap:0;background:white;border:.5px solid #e0e0e0;border-radius:12px;padding:10px 14px;margin-bottom:16px}
+.ctrl-period{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:.5px solid #e8e8e8}
+.ctrl-label{font-size:10px;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:.07em;white-space:nowrap}
+.msel{font-size:13px;padding:5px 10px;border-radius:8px;border:.5px solid #ddd;background:#f8f8f8;color:#111;font-family:inherit;font-weight:500;cursor:pointer}
 .msel:focus{outline:none;border-color:#EA4E65}
-.main{display:flex;gap:24px;align-items:flex-start}
+.ctrl-segs{display:flex;align-items:center;gap:8px;padding-top:10px;flex-wrap:wrap}
+.seg-chips{display:flex;gap:4px;flex-wrap:wrap;flex:1}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;border:.5px solid #e0e0e0;font-size:11px;cursor:pointer;color:#666;background:#f8f8f8;white-space:nowrap;font-weight:500;transition:all .12s;user-select:none}
+.chip:hover{opacity:.8}
+.chip.on{color:white;border-color:transparent;font-weight:600}
+.chip-all.on{background:#222;border-color:#222}
+.chip-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.seg-btns{display:flex;gap:6px;align-items:center;white-space:nowrap}
+.sab{font-size:10px;color:#EA4E65;background:none;border:none;cursor:pointer;font-family:inherit;font-weight:600;padding:0}
+.sab-div{color:#ddd;font-size:11px}
+
+/* MAIN LAYOUT */
+.main{display:flex;gap:20px;align-items:flex-start}
 .phone-col{flex:0 0 auto}
 .right-col{flex:1;min-width:0}
 
 /* PHONE */
 .phone-frame{position:relative;width:288px;border-radius:38px;border:7px solid #1c1c1e;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.22)}
 .phone-img{width:100%;display:block;user-select:none;-webkit-user-drag:none;pointer-events:none}
-.phone-hint{font-size:9px;color:#bbb;text-align:center;margin-top:7px;letter-spacing:.03em}
+.phone-hint{font-size:9px;color:#bbb;text-align:center;margin-top:6px}
 
 /* ZONES */
 .zone{position:absolute;cursor:pointer;z-index:10;border-radius:6px}
-.ho{position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity .18s;pointer-events:none}
+.ho{position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity .15s;pointer-events:none}
 .zone:hover>.ho{opacity:1}
-.zone.dimmed{opacity:.15;pointer-events:none}
+.zone.dimmed{opacity:.1;pointer-events:none}
 .zone.dimmed .badge{display:none}
 .zone.selected>.ho{opacity:1!important}
-
-/* BADGE */
 .badge{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:#C1121F;color:white;font-size:7.5px;font-weight:700;padding:2px 5px;border-radius:8px;white-space:nowrap;z-index:25;pointer-events:none;line-height:1.4;min-width:22px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.2)}
 
-/* GROUP FILTERS */
-.gf-wrap{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.gf{padding:5px 12px;border-radius:20px;border:1.5px solid #e0e0e0;background:white;font-size:11px;cursor:pointer;color:#555;transition:all .15s;font-family:inherit;font-weight:500}
+/* COMPONENT FILTERS */
+.gf-wrap{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.gf{padding:4px 11px;border-radius:14px;border:.5px solid #e0e0e0;background:white;font-size:11px;cursor:pointer;color:#666;transition:all .12s;font-family:inherit;font-weight:500}
 .gf:hover{border-color:#EA4E65;color:#EA4E65}
 .gf.on{background:#EA4E65;color:white;border-color:#EA4E65}
 
 /* SUMMARY */
-.sum-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:14px}
-.scard{background:white;border-radius:11px;padding:10px 12px;border:1px solid #ebebeb}
-.scard-lbl{font-size:9.5px;color:#888;margin-bottom:3px;font-weight:500}
-.scard-val{font-size:15px;font-weight:700;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.scard-sub{font-size:9.5px;margin-top:2px}
+.sum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
+.scard{background:white;border-radius:10px;padding:9px 12px;border:.5px solid #ebebeb}
+.scard-lbl{font-size:9px;color:#888;margin-bottom:2px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.scard-val{font-size:14px;font-weight:700;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.scard-sub{font-size:9px;margin-top:1px;color:#aaa}
 
-.leg{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
-.ldot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.leg-lbl{font-size:10px;color:#888}
+/* LEGEND */
+.leg{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.ldot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.leg-lbl{font-size:9.5px;color:#888}
+.no-z{display:inline-block;font-size:8px;color:#bbb;background:#f5f5f5;border-radius:4px;padding:1px 5px;margin-left:3px;vertical-align:middle}
 
 /* RANKING */
-.sec-ttl{font-size:10px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
-.rk-list{display:flex;flex-direction:column;gap:5px;max-height:560px;overflow-y:auto;padding-right:2px}
+.sec-ttl{font-size:10px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
+.rk-list{display:flex;flex-direction:column;gap:4px;max-height:540px;overflow-y:auto;padding-right:2px}
 .rk-list::-webkit-scrollbar{width:4px}
-.rk-list::-webkit-scrollbar-thumb{background:#e0e0e0;border-radius:2px}
-.rk{display:flex;align-items:center;gap:8px;padding:9px 11px;background:white;border:1.5px solid #ebebeb;border-radius:10px;transition:all .15s;cursor:pointer}
+.rk-list::-webkit-scrollbar-thumb{background:#ddd;border-radius:2px}
+.rk{display:flex;align-items:flex-start;gap:7px;padding:8px 11px;background:white;border:.5px solid #ebebeb;border-radius:9px;transition:all .12s;cursor:pointer}
 .rk:hover,.rk.active{border-color:#EA4E65;box-shadow:0 2px 8px rgba(234,78,101,.08)}
 .rk.active{background:#fff5f6}
-.rk-n{font-size:11px;font-weight:700;color:#ddd;min-width:16px;text-align:right}
+.rk-n{font-size:10px;font-weight:700;color:#ccc;min-width:14px;text-align:right;flex-shrink:0;padding-top:2px}
 .rk-info{flex:1;min-width:0}
-.rk-name{font-size:11.5px;font-weight:600;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rk-sub{font-size:9.5px;color:#bbb;margin-top:1px}
-.rk-right{text-align:right;flex-shrink:0}
-.rk-val{font-size:11.5px;font-weight:700;color:#111}
-.rk-bw{width:68px;height:4px;background:#f0f0f0;border-radius:2px;margin-top:4px;margin-left:auto}
-.rk-bf{height:4px;border-radius:2px}
-.no-z{display:inline-block;font-size:8.5px;color:#bbb;background:#f5f5f5;border-radius:4px;padding:1px 5px;margin-left:4px;vertical-align:middle}
+.rk-name{font-size:11px;font-weight:600;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk-sub{font-size:9px;color:#bbb;margin-top:1px}
+.rk-right{text-align:right;flex-shrink:0;min-width:68px}
+.rk-val{font-size:11px;font-weight:700;color:#111}
+.rk-bw{width:60px;height:3px;background:#f0f0f0;border-radius:2px;margin-top:3px;margin-left:auto}
+.rk-bf{height:3px;border-radius:2px}
+.seg-breakdown{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px}
+.sp{display:inline-flex;align-items:center;gap:3px;background:#f8f8f8;border-radius:10px;padding:2px 6px;font-size:8.5px;border:.5px solid #eee;white-space:nowrap}
+.sp-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
 </style>
 </head>
 <body>
 <div class="page">
-<div class="topbar">
-  <div class="logo">
-    <div class="tri"></div>
-    <div><div class="ttl">Heatmap — Home MOBI</div><div class="sub">Usuarios únicos · Dic 2025 → Abr 2026</div></div>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="tri"></div>
+  <div>
+    <div class="ttl">Heatmap — Home MOBI</div>
+    <div class="sub">Usuarios únicos · Dic 2025 → Abr 2026</div>
   </div>
-  <select class="msel" onchange="setP(this.value)">
-    <option value="Abr 2026">Abr 2026</option>
-    <option value="Mar 2026">Mar 2026</option>
-    <option value="Feb 2026">Feb 2026</option>
-    <option value="Ene 2026">Ene 2026</option>
-    <option value="Dic 2025">Dic 2025</option>
-  </select>
 </div>
 
+<!-- CONTROLS: período + segmentos, todo izquierda -->
+<div class="controls">
+  <div class="ctrl-period">
+    <span class="ctrl-label">Período</span>
+    <select class="msel" onchange="setP(this.value)">
+      <option value="Abr 2026">Abr 2026</option>
+      <option value="Mar 2026">Mar 2026</option>
+      <option value="Feb 2026">Feb 2026</option>
+      <option value="Ene 2026">Ene 2026</option>
+      <option value="Dic 2025">Dic 2025</option>
+    </select>
+  </div>
+  <div class="ctrl-segs">
+    <span class="ctrl-label">Segmento</span>
+    <div class="seg-chips" id="seg-chips"></div>
+    <div class="seg-btns">
+      <button class="sab" onclick="selAll()">Todos</button>
+      <span class="sab-div">·</span>
+      <button class="sab" onclick="selNone()">Ninguno</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
 <div class="main">
 <div class="phone-col">
   <div class="phone-frame" id="pf">
@@ -100,15 +140,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="gf-wrap" id="gf"></div>
   <div class="sum-grid">
     <div class="scard"><div class="scard-lbl">Top zona</div><div class="scard-val" id="sv-top">—</div><div class="scard-sub" id="sv-topval"></div></div>
-    <div class="scard"><div class="scard-lbl">Variación top zona</div><div class="scard-val" id="sv-var">—</div><div class="scard-sub" id="sv-vsub"></div></div>
-    <div class="scard"><div class="scard-lbl">Zonas en vista</div><div class="scard-val" id="sv-cnt">—</div><div class="scard-sub" id="sv-csub"></div></div>
+    <div class="scard"><div class="scard-lbl">Variación</div><div class="scard-val" id="sv-var">—</div><div class="scard-sub" id="sv-vsub"></div></div>
+    <div class="scard"><div class="scard-lbl">Segmentos</div><div class="scard-val" id="sv-seg" style="font-size:11px;line-height:1.5">Todos</div><div class="scard-sub" id="sv-ssub"></div></div>
   </div>
   <div class="leg">
     <span class="leg-lbl">Intensidad:</span>
-    <div style="display:flex;align-items:center;gap:4px"><div class="ldot" style="background:#EA4E65"></div><span class="leg-lbl">Alta</span></div>
-    <div style="display:flex;align-items:center;gap:4px"><div class="ldot" style="background:#f5a623"></div><span class="leg-lbl">Media</span></div>
-    <div style="display:flex;align-items:center;gap:4px"><div class="ldot" style="background:#4CAF50"></div><span class="leg-lbl">Baja</span></div>
-    <span class="no-z" style="margin-left:4px">sin zona = no visible en pantalla inicial</span>
+    <div style="display:flex;align-items:center;gap:3px"><div class="ldot" style="background:#EA4E65"></div><span class="leg-lbl">Alta</span></div>
+    <div style="display:flex;align-items:center;gap:3px"><div class="ldot" style="background:#f5a623"></div><span class="leg-lbl">Media</span></div>
+    <div style="display:flex;align-items:center;gap:3px"><div class="ldot" style="background:#4CAF50"></div><span class="leg-lbl">Baja</span></div>
+    <span class="leg-lbl" style="color:#ccc">· Pastillas = usuarios por segmento</span>
+    <span class="no-z">sin zona = no visible en pantalla inicial</span>
   </div>
   <div class="sec-ttl" id="rk-ttl">Ranking</div>
   <div class="rk-list" id="rk"></div>
@@ -118,25 +159,57 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <script>
 const MESES=["Dic 2025", "Ene 2026", "Feb 2026", "Mar 2026", "Abr 2026"];
-const DATA={"qa_mostrar_mas": {"name": "Mostrar más", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 200724, "Ene 2026": 206908, "Feb 2026": 186362, "Mar 2026": 197905, "Abr 2026": 196469}}, "qa_inversion_rapida": {"name": "Inversión Rápida", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 97109, "Ene 2026": 95845, "Feb 2026": 90675, "Mar 2026": 94249, "Abr 2026": 90847}}, "qa_hacer_una_recarga": {"name": "Hacer una recarga", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 71688, "Ene 2026": 68184, "Feb 2026": 63234, "Mar 2026": 70449, "Abr 2026": 68382}}, "qa_compra_y_venta_dolar": {"name": "Compra y venta dólar", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 58395, "Ene 2026": 62184, "Feb 2026": 58399, "Mar 2026": 58346, "Abr 2026": 57784}}, "qa_plazo_fijo": {"name": "Plazo Fijo", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 54230, "Ene 2026": 57307, "Feb 2026": 53372, "Mar 2026": 56060, "Abr 2026": 55333}}, "qa_chat": {"name": "Chat", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 24175, "Ene 2026": 25176, "Feb 2026": 19766, "Mar 2026": 21308, "Abr 2026": 21050}}, "qa_tienda": {"name": "Tienda", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 19587, "Ene 2026": 19295, "Feb 2026": 18989, "Mar 2026": 17816, "Abr 2026": 17267}}, "qa_transferir_dinero": {"name": "Transferir dinero", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 26750, "Ene 2026": 17606, "Feb 2026": 15130, "Mar 2026": 14487, "Abr 2026": 13149}}, "qa_acciones_y_bonos": {"name": "Acciones y Bonos", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 17883, "Ene 2026": 19438, "Feb 2026": 15866, "Mar 2026": 16472, "Abr 2026": 16455}}, "qa_pago_de_servicios": {"name": "Pago de servicios", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 2668, "Ene 2026": 2420, "Feb 2026": 2439, "Mar 2026": 2453, "Abr 2026": 2339}}, "qa_cuotificar_consumos": {"name": "Cuotificar Consumos", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 1444, "Ene 2026": 1313, "Feb 2026": 1234, "Mar 2026": 1267, "Abr 2026": 1294}}, "qa_extraer_sin_tarjeta": {"name": "Extraer sin tarjeta", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 1142, "Ene 2026": 710, "Feb 2026": 671, "Mar 2026": 653, "Abr 2026": 577}}, "qa_fondos_comunes": {"name": "Fondos Comunes", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 554, "Ene 2026": 630, "Feb 2026": 610, "Mar 2026": 732, "Abr 2026": 830}}, "qa_dolar_mep": {"name": "Dólar MEP", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 352, "Ene 2026": 447, "Feb 2026": 423, "Mar 2026": 439, "Abr 2026": 404}}, "qa_ingresar_dinero": {"name": "Ingresar dinero", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 936, "Ene 2026": 382, "Feb 2026": 226, "Mar 2026": 202, "Abr 2026": 170}}, "qa_adelantar_sueldo": {"name": "Adelantar sueldo", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 312, "Ene 2026": 378, "Feb 2026": 337, "Mar 2026": 380, "Abr 2026": 376}}, "qa_pagar_con_qr": {"name": "Pagar con QR", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 374, "Ene 2026": 365, "Feb 2026": 323, "Mar 2026": 337, "Abr 2026": 351}}, "qa_token_supervielle": {"name": "Token Supervielle", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 315, "Ene 2026": 325, "Feb 2026": 294, "Mar 2026": 320, "Abr 2026": 300}}, "qa_blanquear_pin": {"name": "Blanquear PIN", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 19, "Ene 2026": 79, "Feb 2026": 36, "Mar 2026": 37, "Abr 2026": 25}}, "qa_prestamos_prendarios": {"name": "Préstamos Prendarios", "comp": "Quick Access", "group": "qa", "vals": {"Dic 2025": 0, "Ene 2026": 1, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}, "transferir": {"name": "Transferir", "comp": "Cuenta/CTAs", "group": "cuenta", "vals": {"Dic 2025": 548087, "Ene 2026": 546608, "Feb 2026": 546253, "Mar 2026": 557323, "Abr 2026": 562141}}, "cuenta": {"name": "Detalle de cuenta", "comp": "Cuenta/CTAs", "group": "cuenta", "vals": {"Dic 2025": 17836, "Ene 2026": 13164, "Feb 2026": 13914, "Mar 2026": 12721, "Abr 2026": 13523}}, "aliascbu": {"name": "Alias/CBU", "comp": "Cuenta/CTAs", "group": "cuenta", "vals": {"Dic 2025": 201185, "Ene 2026": 196311, "Feb 2026": 185891, "Mar 2026": 203006, "Abr 2026": 202273}}, "ingresar": {"name": "Ingresar", "comp": "Cuenta/CTAs", "group": "cuenta", "vals": {"Dic 2025": 81197, "Ene 2026": 77008, "Feb 2026": 74257, "Mar 2026": 81042, "Abr 2026": 82741}}, "extraer": {"name": "Extraer", "comp": "Cuenta/CTAs", "group": "cuenta", "vals": {"Dic 2025": 26149, "Ene 2026": 24764, "Feb 2026": 23937, "Mar 2026": 23982, "Abr 2026": 24257}}, "cambiomon": {"name": "Cambio de moneda", "comp": "Cuenta/CTAs", "group": "cuenta", "vals": {"Dic 2025": 8340, "Ene 2026": 9568, "Feb 2026": 9664, "Mar 2026": 10214, "Abr 2026": 10002}}, "header_nombre": {"name": "Header — Datos personales", "comp": "Header", "group": "header", "vals": {"Dic 2025": 57439, "Ene 2026": 55795, "Feb 2026": 54056, "Mar 2026": 57479, "Abr 2026": 61750}}, "chat_header": {"name": "Chat (botón header)", "comp": "Header", "group": "header", "vals": {"Dic 2025": 52810, "Ene 2026": 51629, "Feb 2026": 46674, "Mar 2026": 50413, "Abr 2026": 53710}}, "smartmsg": {"name": "SmartMessage", "comp": "Panel de acción", "group": "smartmsg", "vals": {"Dic 2025": 10793, "Ene 2026": 37750, "Feb 2026": 141576, "Mar 2026": 61394, "Abr 2026": 66999}}, "mundial": {"name": "¡Vamos con Supervielle!", "comp": "Gamificación", "group": "gamification", "vals": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 108194, "Mar 2026": 113328, "Abr 2026": 95743}}, "recomendados": {"name": "Recomendados (banners)", "comp": "Banners", "group": "banners", "vals": {"Dic 2025": 71140, "Ene 2026": 61528, "Feb 2026": 55467, "Mar 2026": 55112, "Abr 2026": 47010}}, "nav_inicio": {"name": "Nav · Inicio", "comp": "Bottom Nav", "group": "nav", "vals": {"Dic 2025": 384387, "Ene 2026": 387258, "Feb 2026": 383171, "Mar 2026": 389517, "Abr 2026": 375195}}, "nav_menu": {"name": "Nav · Menú", "comp": "Bottom Nav", "group": "nav", "vals": {"Dic 2025": 366553, "Ene 2026": 366628, "Feb 2026": 352196, "Mar 2026": 371887, "Abr 2026": 367434}}, "nav_qr": {"name": "Nav · Pago con QR", "comp": "Bottom Nav", "group": "nav", "vals": {"Dic 2025": 202700, "Ene 2026": 197607, "Feb 2026": 199351, "Mar 2026": 212829, "Abr 2026": 215813}}, "nav_prestamos": {"name": "Nav · Préstamos", "comp": "Bottom Nav", "group": "nav", "vals": {"Dic 2025": 246067, "Ene 2026": 256412, "Feb 2026": 255196, "Mar 2026": 260821, "Abr 2026": 267833}}, "nav_tarjetas": {"name": "Nav · Tarjetas", "comp": "Bottom Nav", "group": "nav", "vals": {"Dic 2025": 294430, "Ene 2026": 295522, "Feb 2026": 288459, "Mar 2026": 297664, "Abr 2026": 299646}}};
+const DATA={"qa_mostrar_mas": {"name": "Mostrar más", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 200571, "Ene 2026": 208114, "Feb 2026": 188312, "Mar 2026": 198597, "Abr 2026": 195995}, "Renta Masiva": {"Dic 2025": 106201, "Ene 2026": 112139, "Feb 2026": 102343, "Mar 2026": 107815, "Abr 2026": 107343}, "Previsional": {"Dic 2025": 47348, "Ene 2026": 48546, "Feb 2026": 42530, "Mar 2026": 44978, "Abr 2026": 44010}, "Plan Social": {"Dic 2025": 23023, "Ene 2026": 23139, "Feb 2026": 20676, "Mar 2026": 21822, "Abr 2026": 20952}, "IDENTITE": {"Dic 2025": 19337, "Ene 2026": 20058, "Feb 2026": 18311, "Mar 2026": 18705, "Abr 2026": 18078}, "(not set)": {"Dic 2025": 3758, "Ene 2026": 3345, "Feb 2026": 3662, "Mar 2026": 4483, "Abr 2026": 4852}, "C&P": {"Dic 2025": 725, "Ene 2026": 722, "Feb 2026": 649, "Mar 2026": 654, "Abr 2026": 605}, "PyME": {"Dic 2025": 158, "Ene 2026": 160, "Feb 2026": 137, "Mar 2026": 135, "Abr 2026": 150}, "PyME PLUS": {"Dic 2025": 5, "Ene 2026": 3, "Feb 2026": 3, "Mar 2026": 5, "Abr 2026": 4}, "Segmento PyME": {"Dic 2025": 14, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}, "MEGRA": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 1, "Mar 2026": 0, "Abr 2026": 1}, "E&P PF": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "qa_inversion_rapida": {"name": "Inversión Rápida", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 98563, "Ene 2026": 97178, "Feb 2026": 91141, "Mar 2026": 94547, "Abr 2026": 90702}, "Renta Masiva": {"Dic 2025": 53091, "Ene 2026": 52597, "Feb 2026": 48632, "Mar 2026": 50630, "Abr 2026": 48185}, "Previsional": {"Dic 2025": 20234, "Ene 2026": 19843, "Feb 2026": 18928, "Mar 2026": 19136, "Abr 2026": 18592}, "IDENTITE": {"Dic 2025": 15495, "Ene 2026": 15063, "Feb 2026": 13915, "Mar 2026": 14057, "Abr 2026": 13527}, "Plan Social": {"Dic 2025": 8440, "Ene 2026": 8463, "Feb 2026": 8485, "Mar 2026": 9161, "Abr 2026": 8542}, "(not set)": {"Dic 2025": 876, "Ene 2026": 823, "Feb 2026": 828, "Mar 2026": 1211, "Abr 2026": 1511}, "C&P": {"Dic 2025": 327, "Ene 2026": 316, "Feb 2026": 283, "Mar 2026": 286, "Abr 2026": 276}, "PyME": {"Dic 2025": 73, "Ene 2026": 71, "Feb 2026": 67, "Mar 2026": 64, "Abr 2026": 67}, "Segmento PyME": {"Dic 2025": 24, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}, "PyME PLUS": {"Dic 2025": 3, "Ene 2026": 2, "Feb 2026": 3, "Mar 2026": 2, "Abr 2026": 2}}}, "qa_hacer_una_recarga": {"name": "Hacer una recarga", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 72348, "Ene 2026": 68660, "Feb 2026": 63966, "Mar 2026": 70928, "Abr 2026": 68779}, "Renta Masiva": {"Dic 2025": 39492, "Ene 2026": 37586, "Feb 2026": 35485, "Mar 2026": 39021, "Abr 2026": 38409}, "Plan Social": {"Dic 2025": 16523, "Ene 2026": 15744, "Feb 2026": 14976, "Mar 2026": 16514, "Abr 2026": 15654}, "Previsional": {"Dic 2025": 11405, "Ene 2026": 10965, "Feb 2026": 9414, "Mar 2026": 10746, "Abr 2026": 10135}, "IDENTITE": {"Dic 2025": 3988, "Ene 2026": 3419, "Feb 2026": 3131, "Mar 2026": 3404, "Abr 2026": 3175}, "(not set)": {"Dic 2025": 798, "Ene 2026": 818, "Feb 2026": 851, "Mar 2026": 1138, "Abr 2026": 1300}, "C&P": {"Dic 2025": 107, "Ene 2026": 101, "Feb 2026": 87, "Mar 2026": 86, "Abr 2026": 87}, "PyME": {"Dic 2025": 34, "Ene 2026": 25, "Feb 2026": 22, "Mar 2026": 19, "Abr 2026": 18}, "MEGRA": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}, "PyME PLUS": {"Dic 2025": 0, "Ene 2026": 1, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 1}}}, "qa_compra_y_venta_dolar": {"name": "Compra y venta dólar", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 58363, "Ene 2026": 62205, "Feb 2026": 58433, "Mar 2026": 58705, "Abr 2026": 57303}, "Renta Masiva": {"Dic 2025": 32083, "Ene 2026": 35016, "Feb 2026": 32308, "Mar 2026": 32448, "Abr 2026": 31371}, "IDENTITE": {"Dic 2025": 13572, "Ene 2026": 13889, "Feb 2026": 13338, "Mar 2026": 13406, "Abr 2026": 13034}, "Previsional": {"Dic 2025": 9227, "Ene 2026": 9464, "Feb 2026": 9229, "Mar 2026": 9322, "Abr 2026": 9322}, "Plan Social": {"Dic 2025": 2445, "Ene 2026": 2845, "Feb 2026": 2564, "Mar 2026": 2231, "Abr 2026": 2156}, "(not set)": {"Dic 2025": 727, "Ene 2026": 658, "Feb 2026": 698, "Mar 2026": 981, "Abr 2026": 1165}, "C&P": {"Dic 2025": 255, "Ene 2026": 273, "Feb 2026": 244, "Mar 2026": 259, "Abr 2026": 209}, "PyME": {"Dic 2025": 48, "Ene 2026": 56, "Feb 2026": 52, "Mar 2026": 57, "Abr 2026": 40}, "PyME PLUS": {"Dic 2025": 1, "Ene 2026": 3, "Feb 2026": 0, "Mar 2026": 1, "Abr 2026": 5}, "Segmento PyME": {"Dic 2025": 5, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}, "MEGRA": {"Dic 2025": 0, "Ene 2026": 1, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 1}}}, "qa_plazo_fijo": {"name": "Plazo Fijo", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 54290, "Ene 2026": 57582, "Feb 2026": 53011, "Mar 2026": 56136, "Abr 2026": 54856}, "Renta Masiva": {"Dic 2025": 29970, "Ene 2026": 31664, "Feb 2026": 29418, "Mar 2026": 30783, "Abr 2026": 29953}, "Previsional": {"Dic 2025": 12681, "Ene 2026": 13477, "Feb 2026": 12079, "Mar 2026": 12809, "Abr 2026": 12620}, "IDENTITE": {"Dic 2025": 5801, "Ene 2026": 6306, "Feb 2026": 5804, "Mar 2026": 6260, "Abr 2026": 6003}, "Plan Social": {"Dic 2025": 4869, "Ene 2026": 5227, "Feb 2026": 4805, "Mar 2026": 4933, "Abr 2026": 4679}, "(not set)": {"Dic 2025": 840, "Ene 2026": 747, "Feb 2026": 765, "Mar 2026": 1208, "Abr 2026": 1469}, "C&P": {"Dic 2025": 105, "Ene 2026": 128, "Feb 2026": 115, "Mar 2026": 118, "Abr 2026": 108}, "PyME": {"Dic 2025": 21, "Ene 2026": 33, "Feb 2026": 25, "Mar 2026": 24, "Abr 2026": 24}, "Segmento PyME": {"Dic 2025": 3, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}, "PyME PLUS": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 1, "Abr 2026": 0}}}, "qa_chat": {"name": "Chat", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 24105, "Ene 2026": 25221, "Feb 2026": 19728, "Mar 2026": 21341, "Abr 2026": 21055}, "Renta Masiva": {"Dic 2025": 13417, "Ene 2026": 14106, "Feb 2026": 10955, "Mar 2026": 11856, "Abr 2026": 11395}, "Previsional": {"Dic 2025": 5862, "Ene 2026": 6334, "Feb 2026": 5003, "Mar 2026": 5334, "Abr 2026": 5659}, "Plan Social": {"Dic 2025": 2265, "Ene 2026": 2172, "Feb 2026": 1666, "Mar 2026": 1792, "Abr 2026": 1549}, "IDENTITE": {"Dic 2025": 1754, "Ene 2026": 1794, "Feb 2026": 1434, "Mar 2026": 1530, "Abr 2026": 1478}, "(not set)": {"Dic 2025": 738, "Ene 2026": 728, "Feb 2026": 623, "Mar 2026": 762, "Abr 2026": 922}, "C&P": {"Dic 2025": 52, "Ene 2026": 71, "Feb 2026": 42, "Mar 2026": 57, "Abr 2026": 43}, "PyME": {"Dic 2025": 15, "Ene 2026": 16, "Feb 2026": 5, "Mar 2026": 8, "Abr 2026": 9}, "E&P PF": {"Dic 2025": 1, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 1, "Abr 2026": 0}, "MEGRA": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 1, "Abr 2026": 0}, "Segmento PyME": {"Dic 2025": 1, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "qa_acciones_y_bonos": {"name": "Acciones y Bonos", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 17932, "Ene 2026": 19501, "Feb 2026": 15762, "Mar 2026": 16547, "Abr 2026": 16354}, "Renta Masiva": {"Dic 2025": 10738, "Ene 2026": 11999, "Feb 2026": 9580, "Mar 2026": 10069, "Abr 2026": 9881}, "Previsional": {"Dic 2025": 2525, "Ene 2026": 2662, "Feb 2026": 2181, "Mar 2026": 2186, "Abr 2026": 2158}, "IDENTITE": {"Dic 2025": 2100, "Ene 2026": 2259, "Feb 2026": 1878, "Mar 2026": 1923, "Abr 2026": 1940}, "Plan Social": {"Dic 2025": 2002, "Ene 2026": 2019, "Feb 2026": 1655, "Mar 2026": 1552, "Abr 2026": 1395}, "(not set)": {"Dic 2025": 507, "Ene 2026": 492, "Feb 2026": 416, "Mar 2026": 773, "Abr 2026": 939}, "C&P": {"Dic 2025": 45, "Ene 2026": 54, "Feb 2026": 36, "Mar 2026": 32, "Abr 2026": 34}, "PyME": {"Dic 2025": 14, "Ene 2026": 16, "Feb 2026": 16, "Mar 2026": 12, "Abr 2026": 7}, "Segmento PyME": {"Dic 2025": 1, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "qa_transferir_dinero__qa": {"name": "Transferir dinero (QA)", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 26892, "Ene 2026": 17785, "Feb 2026": 15251, "Mar 2026": 14686, "Abr 2026": 13273}, "Renta Masiva": {"Dic 2025": 15992, "Ene 2026": 9669, "Feb 2026": 8338, "Mar 2026": 7998, "Abr 2026": 7255}, "Previsional": {"Dic 2025": 3908, "Ene 2026": 3050, "Feb 2026": 2620, "Mar 2026": 2428, "Abr 2026": 2225}, "Plan Social": {"Dic 2025": 3673, "Ene 2026": 2751, "Feb 2026": 2249, "Mar 2026": 2326, "Abr 2026": 1956}, "IDENTITE": {"Dic 2025": 3055, "Ene 2026": 2140, "Feb 2026": 1916, "Mar 2026": 1773, "Abr 2026": 1699}, "(not set)": {"Dic 2025": 150, "Ene 2026": 98, "Feb 2026": 71, "Mar 2026": 107, "Abr 2026": 83}, "C&P": {"Dic 2025": 87, "Ene 2026": 62, "Feb 2026": 41, "Mar 2026": 44, "Abr 2026": 42}, "PyME": {"Dic 2025": 23, "Ene 2026": 15, "Feb 2026": 16, "Mar 2026": 10, "Abr 2026": 12}, "Segmento PyME": {"Dic 2025": 3, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}, "PyME PLUS": {"Dic 2025": 1, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 1}}}, "qa_tienda": {"name": "Tienda", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 19447, "Ene 2026": 19396, "Feb 2026": 19192, "Mar 2026": 17909, "Abr 2026": 17185}, "Renta Masiva": {"Dic 2025": 9580, "Ene 2026": 9507, "Feb 2026": 9489, "Mar 2026": 8898, "Abr 2026": 8578}, "Previsional": {"Dic 2025": 5063, "Ene 2026": 5139, "Feb 2026": 4936, "Mar 2026": 4717, "Abr 2026": 4242}, "IDENTITE": {"Dic 2025": 2392, "Ene 2026": 2394, "Feb 2026": 2102, "Mar 2026": 2023, "Abr 2026": 2157}, "Plan Social": {"Dic 2025": 1866, "Ene 2026": 1810, "Feb 2026": 2139, "Mar 2026": 1525, "Abr 2026": 1384}, "(not set)": {"Dic 2025": 489, "Ene 2026": 502, "Feb 2026": 484, "Mar 2026": 699, "Abr 2026": 789}, "C&P": {"Dic 2025": 54, "Ene 2026": 35, "Feb 2026": 35, "Mar 2026": 40, "Abr 2026": 24}, "PyME": {"Dic 2025": 3, "Ene 2026": 9, "Feb 2026": 7, "Mar 2026": 7, "Abr 2026": 10}, "PyME PLUS": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 1}}}, "qa_pago_de_servicios": {"name": "Pago de servicios", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 2669, "Ene 2026": 2420, "Feb 2026": 2442, "Mar 2026": 2453, "Abr 2026": 2339}, "Renta Masiva": {"Dic 2025": 1345, "Ene 2026": 1223, "Feb 2026": 1225, "Mar 2026": 1239, "Abr 2026": 1221}, "IDENTITE": {"Dic 2025": 520, "Ene 2026": 489, "Feb 2026": 476, "Mar 2026": 482, "Abr 2026": 467}, "Previsional": {"Dic 2025": 614, "Ene 2026": 547, "Feb 2026": 574, "Mar 2026": 559, "Abr 2026": 488}, "Plan Social": {"Dic 2025": 155, "Ene 2026": 132, "Feb 2026": 135, "Mar 2026": 141, "Abr 2026": 125}, "C&P": {"Dic 2025": 21, "Ene 2026": 21, "Feb 2026": 20, "Mar 2026": 20, "Abr 2026": 22}, "(not set)": {"Dic 2025": 9, "Ene 2026": 2, "Feb 2026": 10, "Mar 2026": 9, "Abr 2026": 13}, "PyME": {"Dic 2025": 4, "Ene 2026": 6, "Feb 2026": 2, "Mar 2026": 3, "Abr 2026": 3}, "Segmento PyME": {"Dic 2025": 1, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "qa_cuotificar_consumos": {"name": "Cuotificar Consumos", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 1446, "Ene 2026": 1313, "Feb 2026": 1235, "Mar 2026": 1273, "Abr 2026": 1297}, "Renta Masiva": {"Dic 2025": 930, "Ene 2026": 813, "Feb 2026": 738, "Mar 2026": 774, "Abr 2026": 790}, "Previsional": {"Dic 2025": 244, "Ene 2026": 246, "Feb 2026": 230, "Mar 2026": 222, "Abr 2026": 223}, "Plan Social": {"Dic 2025": 152, "Ene 2026": 152, "Feb 2026": 166, "Mar 2026": 178, "Abr 2026": 197}, "IDENTITE": {"Dic 2025": 114, "Ene 2026": 96, "Feb 2026": 98, "Mar 2026": 88, "Abr 2026": 80}, "(not set)": {"Dic 2025": 4, "Ene 2026": 4, "Feb 2026": 3, "Mar 2026": 10, "Abr 2026": 6}, "C&P": {"Dic 2025": 1, "Ene 2026": 2, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 1}, "PyME": {"Dic 2025": 1, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 1, "Abr 2026": 0}}}, "qa_extraer_sin_tarjeta__qa": {"name": "Extraer sin tarjeta (QA)", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 1145, "Ene 2026": 710, "Feb 2026": 671, "Mar 2026": 653, "Abr 2026": 578}, "Renta Masiva": {"Dic 2025": 682, "Ene 2026": 413, "Feb 2026": 394, "Mar 2026": 378, "Abr 2026": 357}, "Plan Social": {"Dic 2025": 176, "Ene 2026": 128, "Feb 2026": 114, "Mar 2026": 135, "Abr 2026": 99}, "Previsional": {"Dic 2025": 153, "Ene 2026": 86, "Feb 2026": 94, "Mar 2026": 61, "Abr 2026": 63}, "IDENTITE": {"Dic 2025": 117, "Ene 2026": 76, "Feb 2026": 63, "Mar 2026": 67, "Abr 2026": 52}, "(not set)": {"Dic 2025": 15, "Ene 2026": 5, "Feb 2026": 5, "Mar 2026": 10, "Abr 2026": 6}, "C&P": {"Dic 2025": 2, "Ene 2026": 2, "Feb 2026": 1, "Mar 2026": 2, "Abr 2026": 1}}}, "qa_fondos_comunes": {"name": "Fondos Comunes", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 557, "Ene 2026": 630, "Feb 2026": 611, "Mar 2026": 734, "Abr 2026": 830}, "Renta Masiva": {"Dic 2025": 343, "Ene 2026": 372, "Feb 2026": 370, "Mar 2026": 443, "Abr 2026": 523}, "IDENTITE": {"Dic 2025": 148, "Ene 2026": 170, "Feb 2026": 169, "Mar 2026": 187, "Abr 2026": 206}, "Previsional": {"Dic 2025": 48, "Ene 2026": 65, "Feb 2026": 45, "Mar 2026": 68, "Abr 2026": 67}, "Plan Social": {"Dic 2025": 11, "Ene 2026": 15, "Feb 2026": 18, "Mar 2026": 22, "Abr 2026": 22}, "(not set)": {"Dic 2025": 5, "Ene 2026": 2, "Feb 2026": 5, "Mar 2026": 9, "Abr 2026": 7}, "C&P": {"Dic 2025": 2, "Ene 2026": 6, "Feb 2026": 4, "Mar 2026": 4, "Abr 2026": 4}, "PyME": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 1, "Abr 2026": 1}}}, "qa_adelanto_de_sueldo": {"name": "Adelanto de sueldo", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 314, "Ene 2026": 379, "Feb 2026": 339, "Mar 2026": 383, "Abr 2026": 376}, "Renta Masiva": {"Dic 2025": 225, "Ene 2026": 273, "Feb 2026": 245, "Mar 2026": 277, "Abr 2026": 270}, "Plan Social": {"Dic 2025": 41, "Ene 2026": 37, "Feb 2026": 40, "Mar 2026": 46, "Abr 2026": 40}, "Previsional": {"Dic 2025": 30, "Ene 2026": 45, "Feb 2026": 31, "Mar 2026": 32, "Abr 2026": 42}, "IDENTITE": {"Dic 2025": 16, "Ene 2026": 23, "Feb 2026": 20, "Mar 2026": 23, "Abr 2026": 22}, "(not set)": {"Dic 2025": 2, "Ene 2026": 1, "Feb 2026": 2, "Mar 2026": 5, "Abr 2026": 2}, "C&P": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 1, "Mar 2026": 0, "Abr 2026": 0}}}, "qa_d_lar_mep": {"name": "Dólar MEP", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 352, "Ene 2026": 447, "Feb 2026": 425, "Mar 2026": 439, "Abr 2026": 404}, "Renta Masiva": {"Dic 2025": 199, "Ene 2026": 243, "Feb 2026": 236, "Mar 2026": 229, "Abr 2026": 221}, "IDENTITE": {"Dic 2025": 116, "Ene 2026": 130, "Feb 2026": 122, "Mar 2026": 143, "Abr 2026": 117}, "Previsional": {"Dic 2025": 29, "Ene 2026": 50, "Feb 2026": 49, "Mar 2026": 48, "Abr 2026": 41}, "Plan Social": {"Dic 2025": 6, "Ene 2026": 20, "Feb 2026": 14, "Mar 2026": 15, "Abr 2026": 21}, "C&P": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 2, "Mar 2026": 3, "Abr 2026": 3}, "(not set)": {"Dic 2025": 1, "Ene 2026": 3, "Feb 2026": 2, "Mar 2026": 0, "Abr 2026": 1}, "PyME": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 1, "Abr 2026": 0}}}, "qa_ingresar_dinero__qa": {"name": "Ingresar dinero (QA)", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 936, "Ene 2026": 382, "Feb 2026": 226, "Mar 2026": 203, "Abr 2026": 170}, "Renta Masiva": {"Dic 2025": 537, "Ene 2026": 214, "Feb 2026": 128, "Mar 2026": 119, "Abr 2026": 103}, "Plan Social": {"Dic 2025": 147, "Ene 2026": 67, "Feb 2026": 42, "Mar 2026": 36, "Abr 2026": 34}, "Previsional": {"Dic 2025": 156, "Ene 2026": 59, "Feb 2026": 38, "Mar 2026": 30, "Abr 2026": 18}, "IDENTITE": {"Dic 2025": 82, "Ene 2026": 34, "Feb 2026": 17, "Mar 2026": 12, "Abr 2026": 10}, "(not set)": {"Dic 2025": 12, "Ene 2026": 6, "Feb 2026": 1, "Mar 2026": 6, "Abr 2026": 4}, "C&P": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 1}, "PyME": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "qa_pagar_con_qr": {"name": "Pagar con QR", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 374, "Ene 2026": 365, "Feb 2026": 324, "Mar 2026": 337, "Abr 2026": 351}, "Renta Masiva": {"Dic 2025": 220, "Ene 2026": 204, "Feb 2026": 173, "Mar 2026": 202, "Abr 2026": 205}, "IDENTITE": {"Dic 2025": 46, "Ene 2026": 61, "Feb 2026": 59, "Mar 2026": 43, "Abr 2026": 47}, "Previsional": {"Dic 2025": 62, "Ene 2026": 46, "Feb 2026": 44, "Mar 2026": 44, "Abr 2026": 51}, "Plan Social": {"Dic 2025": 43, "Ene 2026": 49, "Feb 2026": 40, "Mar 2026": 44, "Abr 2026": 42}, "(not set)": {"Dic 2025": 2, "Ene 2026": 4, "Feb 2026": 5, "Mar 2026": 3, "Abr 2026": 5}, "C&P": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 3, "Mar 2026": 1, "Abr 2026": 1}}}, "qa_token_supervielle": {"name": "Token Supervielle", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 316, "Ene 2026": 325, "Feb 2026": 296, "Mar 2026": 320, "Abr 2026": 300}, "IDENTITE": {"Dic 2025": 109, "Ene 2026": 110, "Feb 2026": 108, "Mar 2026": 116, "Abr 2026": 109}, "Renta Masiva": {"Dic 2025": 113, "Ene 2026": 105, "Feb 2026": 99, "Mar 2026": 103, "Abr 2026": 108}, "Previsional": {"Dic 2025": 83, "Ene 2026": 90, "Feb 2026": 78, "Mar 2026": 82, "Abr 2026": 70}, "Plan Social": {"Dic 2025": 5, "Ene 2026": 12, "Feb 2026": 5, "Mar 2026": 8, "Abr 2026": 7}, "(not set)": {"Dic 2025": 5, "Ene 2026": 2, "Feb 2026": 6, "Mar 2026": 7, "Abr 2026": 5}, "C&P": {"Dic 2025": 1, "Ene 2026": 5, "Feb 2026": 0, "Mar 2026": 4, "Abr 2026": 1}, "PyME": {"Dic 2025": 0, "Ene 2026": 1, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "qa_blanquear_pin": {"name": "Blanquear PIN", "comp": "Quick Access", "group": "qa", "segs": {"ALL": {"Dic 2025": 19, "Ene 2026": 79, "Feb 2026": 36, "Mar 2026": 37, "Abr 2026": 25}, "Renta Masiva": {"Dic 2025": 12, "Ene 2026": 43, "Feb 2026": 23, "Mar 2026": 20, "Abr 2026": 17}, "IDENTITE": {"Dic 2025": 1, "Ene 2026": 15, "Feb 2026": 4, "Mar 2026": 5, "Abr 2026": 5}, "Previsional": {"Dic 2025": 2, "Ene 2026": 14, "Feb 2026": 5, "Mar 2026": 8, "Abr 2026": 1}, "Plan Social": {"Dic 2025": 4, "Ene 2026": 6, "Feb 2026": 3, "Mar 2026": 4, "Abr 2026": 2}, "C&P": {"Dic 2025": 0, "Ene 2026": 1, "Feb 2026": 1, "Mar 2026": 0, "Abr 2026": 0}}}, "cambiomon": {"name": "Cambio de moneda", "comp": "Cuenta/CTAs", "group": "cuenta", "segs": {"ALL": {"Dic 2025": 8337, "Ene 2026": 9514, "Feb 2026": 9648, "Mar 2026": 10136, "Abr 2026": 10007}, "(not set)": {"Dic 2025": 21, "Ene 2026": 17, "Feb 2026": 29, "Mar 2026": 32, "Abr 2026": 50}, "C&P": {"Dic 2025": 56, "Ene 2026": 55, "Feb 2026": 50, "Mar 2026": 62, "Abr 2026": 50}, "IDENTITE": {"Dic 2025": 2558, "Ene 2026": 2813, "Feb 2026": 2798, "Mar 2026": 2953, "Abr 2026": 2820}, "MEGRA": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 1}, "Plan Social": {"Dic 2025": 3, "Ene 2026": 3, "Feb 2026": 5, "Mar 2026": 3, "Abr 2026": 2}, "Previsional": {"Dic 2025": 1204, "Ene 2026": 1376, "Feb 2026": 1439, "Mar 2026": 1498, "Abr 2026": 1540}, "PyME": {"Dic 2025": 13, "Ene 2026": 11, "Feb 2026": 8, "Mar 2026": 7, "Abr 2026": 7}, "PyME PLUS": {"Dic 2025": 1, "Ene 2026": 0, "Feb 2026": 1, "Mar 2026": 0, "Abr 2026": 0}, "Renta Masiva": {"Dic 2025": 4481, "Ene 2026": 5239, "Feb 2026": 5318, "Mar 2026": 5581, "Abr 2026": 5537}}}, "aliascbu": {"name": "Alias/CBU", "comp": "Cuenta/CTAs", "group": "cuenta", "segs": {"ALL": {"Dic 2025": 200269, "Ene 2026": 196452, "Feb 2026": 185905, "Mar 2026": 201672, "Abr 2026": 201625}, "(not set)": {"Dic 2025": 2975, "Ene 2026": 2381, "Feb 2026": 2718, "Mar 2026": 3911, "Abr 2026": 4261}, "C&P": {"Dic 2025": 610, "Ene 2026": 622, "Feb 2026": 558, "Mar 2026": 577, "Abr 2026": 532}, "E&P PF": {"Dic 2025": 1, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 1, "Abr 2026": 1}, "IDENTITE": {"Dic 2025": 19403, "Ene 2026": 19282, "Feb 2026": 17804, "Mar 2026": 18659, "Abr 2026": 17546}, "MEGRA": {"Dic 2025": 3, "Ene 2026": 3, "Feb 2026": 1, "Mar 2026": 1, "Abr 2026": 1}, "Plan Social": {"Dic 2025": 26974, "Ene 2026": 25526, "Feb 2026": 24455, "Mar 2026": 27475, "Abr 2026": 30225}, "Previsional": {"Dic 2025": 34028, "Ene 2026": 33352, "Feb 2026": 30997, "Mar 2026": 32409, "Abr 2026": 32834}, "PyME": {"Dic 2025": 135, "Ene 2026": 139, "Feb 2026": 132, "Mar 2026": 144, "Abr 2026": 113}, "PyME PLUS": {"Dic 2025": 1, "Ene 2026": 2, "Feb 2026": 3, "Mar 2026": 4, "Abr 2026": 7}, "Renta Masiva": {"Dic 2025": 116127, "Ene 2026": 115145, "Feb 2026": 109237, "Mar 2026": 118491, "Abr 2026": 116105}, "Segmento PyME": {"Dic 2025": 12, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "extraer": {"name": "Extraer", "comp": "Cuenta/CTAs", "group": "cuenta", "segs": {"ALL": {"Dic 2025": 26116, "Ene 2026": 24731, "Feb 2026": 23821, "Mar 2026": 23954, "Abr 2026": 24359}, "(not set)": {"Dic 2025": 404, "Ene 2026": 306, "Feb 2026": 377, "Mar 2026": 500, "Abr 2026": 510}, "C&P": {"Dic 2025": 52, "Ene 2026": 46, "Feb 2026": 35, "Mar 2026": 40, "Abr 2026": 36}, "IDENTITE": {"Dic 2025": 1348, "Ene 2026": 1307, "Feb 2026": 1143, "Mar 2026": 1109, "Abr 2026": 1187}, "MEGRA": {"Dic 2025": 0, "Ene 2026": 1, "Feb 2026": 0, "Mar 2026": 1, "Abr 2026": 0}, "Plan Social": {"Dic 2025": 5239, "Ene 2026": 4652, "Feb 2026": 4582, "Mar 2026": 4570, "Abr 2026": 4363}, "Previsional": {"Dic 2025": 4929, "Ene 2026": 5210, "Feb 2026": 4649, "Mar 2026": 4767, "Abr 2026": 5041}, "PyME": {"Dic 2025": 7, "Ene 2026": 6, "Feb 2026": 11, "Mar 2026": 6, "Abr 2026": 9}, "PyME PLUS": {"Dic 2025": 1, "Ene 2026": 0, "Feb 2026": 1, "Mar 2026": 2, "Abr 2026": 0}, "Renta Masiva": {"Dic 2025": 14136, "Ene 2026": 13203, "Feb 2026": 13023, "Mar 2026": 12959, "Abr 2026": 13213}}}, "ingresar": {"name": "Ingresar", "comp": "Cuenta/CTAs", "group": "cuenta", "segs": {"ALL": {"Dic 2025": 81067, "Ene 2026": 76721, "Feb 2026": 74193, "Mar 2026": 80960, "Abr 2026": 83487}, "(not set)": {"Dic 2025": 1093, "Ene 2026": 872, "Feb 2026": 893, "Mar 2026": 1543, "Abr 2026": 1860}, "C&P": {"Dic 2025": 162, "Ene 2026": 147, "Feb 2026": 154, "Mar 2026": 182, "Abr 2026": 149}, "E&P PF": {"Dic 2025": 1, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}, "IDENTITE": {"Dic 2025": 4953, "Ene 2026": 4662, "Feb 2026": 4429, "Mar 2026": 4673, "Abr 2026": 4653}, "MEGRA": {"Dic 2025": 1, "Ene 2026": 2, "Feb 2026": 0, "Mar 2026": 1, "Abr 2026": 0}, "Plan Social": {"Dic 2025": 12805, "Ene 2026": 12084, "Feb 2026": 12531, "Mar 2026": 13066, "Abr 2026": 13257}, "Previsional": {"Dic 2025": 15030, "Ene 2026": 14560, "Feb 2026": 13745, "Mar 2026": 14317, "Abr 2026": 15273}, "PyME": {"Dic 2025": 32, "Ene 2026": 30, "Feb 2026": 31, "Mar 2026": 29, "Abr 2026": 30}, "PyME PLUS": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 1, "Abr 2026": 1}, "Renta Masiva": {"Dic 2025": 46988, "Ene 2026": 44364, "Feb 2026": 42410, "Mar 2026": 47148, "Abr 2026": 48264}, "Segmento PyME": {"Dic 2025": 2, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "cuenta": {"name": "Detalle de cuenta", "comp": "Cuenta/CTAs", "group": "cuenta", "segs": {"ALL": {"Dic 2025": 412635, "Ene 2026": 403272, "Feb 2026": 394016, "Mar 2026": 402410, "Abr 2026": 412244}, "(not set)": {"Dic 2025": 3471, "Ene 2026": 2433, "Feb 2026": 3061, "Mar 2026": 3934, "Abr 2026": 4265}, "C&P": {"Dic 2025": 1622, "Ene 2026": 1555, "Feb 2026": 1471, "Mar 2026": 1410, "Abr 2026": 1423}, "E&P PF": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 1, "Mar 2026": 1, "Abr 2026": 1}, "IDENTITE": {"Dic 2025": 45107, "Ene 2026": 44591, "Feb 2026": 43315, "Mar 2026": 42896, "Abr 2026": 42772}, "MEGRA": {"Dic 2025": 2, "Ene 2026": 4, "Feb 2026": 2, "Mar 2026": 2, "Abr 2026": 2}, "Plan Social": {"Dic 2025": 46862, "Ene 2026": 44915, "Feb 2026": 44247, "Mar 2026": 46163, "Abr 2026": 47010}, "Previsional": {"Dic 2025": 91406, "Ene 2026": 89827, "Feb 2026": 85524, "Mar 2026": 88085, "Abr 2026": 89854}, "PyME": {"Dic 2025": 305, "Ene 2026": 311, "Feb 2026": 285, "Mar 2026": 276, "Abr 2026": 271}, "PyME PLUS": {"Dic 2025": 9, "Ene 2026": 11, "Feb 2026": 11, "Mar 2026": 10, "Abr 2026": 12}, "Renta Masiva": {"Dic 2025": 223776, "Ene 2026": 219624, "Feb 2026": 216099, "Mar 2026": 219633, "Abr 2026": 226634}, "Segmento PyME": {"Dic 2025": 74, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "transferir": {"name": "Transferir", "comp": "Cuenta/CTAs", "group": "cuenta", "segs": {"ALL": {"Dic 2025": 552591, "Ene 2026": 545757, "Feb 2026": 545922, "Mar 2026": 559549, "Abr 2026": 565413}, "(not set)": {"Dic 2025": 4036, "Ene 2026": 2546, "Feb 2026": 3258, "Mar 2026": 3733, "Abr 2026": 4218}, "C&P": {"Dic 2025": 1378, "Ene 2026": 1341, "Feb 2026": 1281, "Mar 2026": 1316, "Abr 2026": 1285}, "E&P PF": {"Dic 2025": 1, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}, "IDENTITE": {"Dic 2025": 46687, "Ene 2026": 46796, "Feb 2026": 45841, "Mar 2026": 46402, "Abr 2026": 45769}, "MEGRA": {"Dic 2025": 1, "Ene 2026": 2, "Feb 2026": 1, "Mar 2026": 1, "Abr 2026": 1}, "Plan Social": {"Dic 2025": 91217, "Ene 2026": 87387, "Feb 2026": 86370, "Mar 2026": 85174, "Abr 2026": 87394}, "Previsional": {"Dic 2025": 134253, "Ene 2026": 131842, "Feb 2026": 132183, "Mar 2026": 136444, "Abr 2026": 135855}, "PyME": {"Dic 2025": 289, "Ene 2026": 280, "Feb 2026": 276, "Mar 2026": 278, "Abr 2026": 275}, "PyME PLUS": {"Dic 2025": 8, "Ene 2026": 6, "Feb 2026": 9, "Mar 2026": 8, "Abr 2026": 14}, "Renta Masiva": {"Dic 2025": 274622, "Ene 2026": 275557, "Feb 2026": 276703, "Mar 2026": 286193, "Abr 2026": 290602}, "Segmento PyME": {"Dic 2025": 99, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "nav_inicio": {"name": "Nav · Inicio", "comp": "Bottom Nav", "group": "nav", "segs": {"ALL": {"Dic 2025": 386800, "Ene 2026": 384716, "Feb 2026": 383354, "Mar 2026": 389030, "Abr 2026": 370531}, "(not set)": {"Dic 2025": 5931, "Ene 2026": 5220, "Feb 2026": 6079, "Mar 2026": 7082, "Abr 2026": 7318}, "C&P": {"Dic 2025": 1128, "Ene 2026": 1125, "Feb 2026": 1048, "Mar 2026": 1023, "Abr 2026": 954}, "E&P PF": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 0, "Mar 2026": 1, "Abr 2026": 0}, "IDENTITE": {"Dic 2025": 37055, "Ene 2026": 37220, "Feb 2026": 36638, "Mar 2026": 36342, "Abr 2026": 34407}, "MEGRA": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 2, "Mar 2026": 2, "Abr 2026": 2}, "Plan Social": {"Dic 2025": 46812, "Ene 2026": 45955, "Feb 2026": 46366, "Mar 2026": 47333, "Abr 2026": 44285}, "Previsional": {"Dic 2025": 85893, "Ene 2026": 84552, "Feb 2026": 83386, "Mar 2026": 85408, "Abr 2026": 80120}, "PyME": {"Dic 2025": 231, "Ene 2026": 230, "Feb 2026": 222, "Mar 2026": 220, "Abr 2026": 188}, "PyME PLUS": {"Dic 2025": 9, "Ene 2026": 6, "Feb 2026": 8, "Mar 2026": 5, "Abr 2026": 11}, "Renta Masiva": {"Dic 2025": 209697, "Ene 2026": 210406, "Feb 2026": 209605, "Mar 2026": 211614, "Abr 2026": 203246}, "Segmento PyME": {"Dic 2025": 42, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "nav_menu": {"name": "Nav · Menú", "comp": "Bottom Nav", "group": "nav", "segs": {"ALL": {"Dic 2025": 365818, "Ene 2026": 366895, "Feb 2026": 356792, "Mar 2026": 368046, "Abr 2026": 366143}, "(not set)": {"Dic 2025": 6202, "Ene 2026": 5371, "Feb 2026": 6263, "Mar 2026": 7564, "Abr 2026": 7818}, "C&P": {"Dic 2025": 1271, "Ene 2026": 1240, "Feb 2026": 1181, "Mar 2026": 1193, "Abr 2026": 1154}, "E&P PF": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 0, "Mar 2026": 1, "Abr 2026": 1}, "IDENTITE": {"Dic 2025": 37238, "Ene 2026": 37258, "Feb 2026": 36157, "Mar 2026": 36825, "Abr 2026": 35613}, "MEGRA": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 2, "Mar 2026": 2, "Abr 2026": 1}, "Plan Social": {"Dic 2025": 37744, "Ene 2026": 36853, "Feb 2026": 35774, "Mar 2026": 36552, "Abr 2026": 35650}, "Previsional": {"Dic 2025": 94615, "Ene 2026": 94215, "Feb 2026": 91670, "Mar 2026": 94552, "Abr 2026": 95984}, "PyME": {"Dic 2025": 272, "Ene 2026": 256, "Feb 2026": 268, "Mar 2026": 242, "Abr 2026": 238}, "PyME PLUS": {"Dic 2025": 10, "Ene 2026": 8, "Feb 2026": 8, "Mar 2026": 5, "Abr 2026": 10}, "Renta Masiva": {"Dic 2025": 188384, "Ene 2026": 191692, "Feb 2026": 185469, "Mar 2026": 191110, "Abr 2026": 189674}, "Segmento PyME": {"Dic 2025": 80, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "nav_qr": {"name": "Nav · Pago con QR", "comp": "Bottom Nav", "group": "nav", "segs": {"ALL": {"Dic 2025": 204229, "Ene 2026": 197761, "Feb 2026": 199976, "Mar 2026": 212056, "Abr 2026": 216489}, "(not set)": {"Dic 2025": 2496, "Ene 2026": 2199, "Feb 2026": 2497, "Mar 2026": 3217, "Abr 2026": 3391}, "C&P": {"Dic 2025": 574, "Ene 2026": 564, "Feb 2026": 536, "Mar 2026": 573, "Abr 2026": 582}, "IDENTITE": {"Dic 2025": 22243, "Ene 2026": 21462, "Feb 2026": 21453, "Mar 2026": 21689, "Abr 2026": 21794}, "MEGRA": {"Dic 2025": 1, "Ene 2026": 2, "Feb 2026": 2, "Mar 2026": 2, "Abr 2026": 2}, "Plan Social": {"Dic 2025": 25206, "Ene 2026": 24617, "Feb 2026": 25054, "Mar 2026": 27461, "Abr 2026": 27272}, "Previsional": {"Dic 2025": 31743, "Ene 2026": 30679, "Feb 2026": 30038, "Mar 2026": 32426, "Abr 2026": 34160}, "PyME": {"Dic 2025": 131, "Ene 2026": 116, "Feb 2026": 106, "Mar 2026": 115, "Abr 2026": 129}, "PyME PLUS": {"Dic 2025": 2, "Ene 2026": 1, "Feb 2026": 3, "Mar 2026": 6, "Abr 2026": 6}, "Renta Masiva": {"Dic 2025": 121825, "Ene 2026": 118121, "Feb 2026": 120287, "Mar 2026": 126567, "Abr 2026": 129153}, "Segmento PyME": {"Dic 2025": 8, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "nav_prestamos": {"name": "Nav · Préstamos", "comp": "Bottom Nav", "group": "nav", "segs": {"ALL": {"Dic 2025": 247799, "Ene 2026": 257389, "Feb 2026": 254185, "Mar 2026": 263044, "Abr 2026": 267483}, "(not set)": {"Dic 2025": 4400, "Ene 2026": 3974, "Feb 2026": 4671, "Mar 2026": 5361, "Abr 2026": 5557}, "C&P": {"Dic 2025": 454, "Ene 2026": 464, "Feb 2026": 377, "Mar 2026": 436, "Abr 2026": 420}, "E&P PF": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 1, "Mar 2026": 1, "Abr 2026": 1}, "IDENTITE": {"Dic 2025": 18028, "Ene 2026": 18623, "Feb 2026": 17752, "Mar 2026": 18361, "Abr 2026": 18302}, "MEGRA": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 1, "Mar 2026": 1, "Abr 2026": 0}, "Plan Social": {"Dic 2025": 32258, "Ene 2026": 32913, "Feb 2026": 32798, "Mar 2026": 32969, "Abr 2026": 32451}, "Previsional": {"Dic 2025": 48979, "Ene 2026": 52897, "Feb 2026": 51196, "Mar 2026": 54598, "Abr 2026": 57607}, "PyME": {"Dic 2025": 93, "Ene 2026": 91, "Feb 2026": 90, "Mar 2026": 84, "Abr 2026": 83}, "PyME PLUS": {"Dic 2025": 2, "Ene 2026": 2, "Feb 2026": 3, "Mar 2026": 2, "Abr 2026": 4}, "Renta Masiva": {"Dic 2025": 143574, "Ene 2026": 148424, "Feb 2026": 147296, "Mar 2026": 151231, "Abr 2026": 153058}, "Segmento PyME": {"Dic 2025": 10, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "nav_tarjetas": {"name": "Nav · Tarjetas", "comp": "Bottom Nav", "group": "nav", "segs": {"ALL": {"Dic 2025": 292283, "Ene 2026": 294895, "Feb 2026": 289955, "Mar 2026": 297848, "Abr 2026": 296526}, "(not set)": {"Dic 2025": 5123, "Ene 2026": 4527, "Feb 2026": 5249, "Mar 2026": 6260, "Abr 2026": 6471}, "C&P": {"Dic 2025": 752, "Ene 2026": 733, "Feb 2026": 707, "Mar 2026": 728, "Abr 2026": 674}, "E&P PF": {"Dic 2025": 1, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}, "IDENTITE": {"Dic 2025": 34425, "Ene 2026": 34797, "Feb 2026": 33928, "Mar 2026": 33697, "Abr 2026": 32931}, "MEGRA": {"Dic 2025": 3, "Ene 2026": 3, "Feb 2026": 2, "Mar 2026": 2, "Abr 2026": 2}, "Plan Social": {"Dic 2025": 28907, "Ene 2026": 28925, "Feb 2026": 28802, "Mar 2026": 29603, "Abr 2026": 29024}, "Previsional": {"Dic 2025": 55042, "Ene 2026": 55877, "Feb 2026": 53608, "Mar 2026": 56867, "Abr 2026": 56808}, "PyME": {"Dic 2025": 152, "Ene 2026": 162, "Feb 2026": 133, "Mar 2026": 146, "Abr 2026": 141}, "PyME PLUS": {"Dic 2025": 4, "Ene 2026": 2, "Feb 2026": 3, "Mar 2026": 3, "Abr 2026": 10}, "Renta Masiva": {"Dic 2025": 167853, "Ene 2026": 169869, "Feb 2026": 167523, "Mar 2026": 170542, "Abr 2026": 170465}, "Segmento PyME": {"Dic 2025": 21, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "smartmsg": {"name": "SmartMessage", "comp": "Panel de acción", "group": "smartmsg", "segs": {"ALL": {"Dic 2025": 10470, "Ene 2026": 35861, "Feb 2026": 109367, "Mar 2026": 53053, "Abr 2026": 58850}, "(not set)": {"Dic 2025": 1, "Ene 2026": 15, "Feb 2026": 166, "Mar 2026": 116, "Abr 2026": 102}, "C&P": {"Dic 2025": 10, "Ene 2026": 20, "Feb 2026": 135, "Mar 2026": 55, "Abr 2026": 36}, "IDENTITE": {"Dic 2025": 1541, "Ene 2026": 4677, "Feb 2026": 8393, "Mar 2026": 3020, "Abr 2026": 3954}, "Plan Social": {"Dic 2025": 83, "Ene 2026": 1944, "Feb 2026": 22154, "Mar 2026": 8928, "Abr 2026": 8514}, "Previsional": {"Dic 2025": 3913, "Ene 2026": 10320, "Feb 2026": 19673, "Mar 2026": 11136, "Abr 2026": 15717}, "PyME": {"Dic 2025": 1, "Ene 2026": 2, "Feb 2026": 28, "Mar 2026": 11, "Abr 2026": 9}, "PyME PLUS": {"Dic 2025": 0, "Ene 2026": 1, "Feb 2026": 1, "Mar 2026": 1, "Abr 2026": 2}, "Renta Masiva": {"Dic 2025": 4921, "Ene 2026": 18882, "Feb 2026": 58817, "Mar 2026": 29786, "Abr 2026": 30516}}}, "mundial": {"name": "¡Vamos con Supervielle!", "comp": "Gamificación", "group": "gamification", "segs": {"ALL": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 95716, "Mar 2026": 108314, "Abr 2026": 91813}, "(not set)": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 913, "Mar 2026": 2276, "Abr 2026": 3123}, "C&P": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 185, "Mar 2026": 212, "Abr 2026": 291}, "IDENTITE": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 7396, "Mar 2026": 8204, "Abr 2026": 7952}, "Plan Social": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 15587, "Mar 2026": 16817, "Abr 2026": 11432}, "Previsional": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 14713, "Mar 2026": 18445, "Abr 2026": 15071}, "PyME": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 53, "Mar 2026": 66, "Abr 2026": 26}, "PyME PLUS": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 13, "Mar 2026": 0, "Abr 2026": 0}, "Renta Masiva": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 56856, "Mar 2026": 62294, "Abr 2026": 53918}}}, "recomendados": {"name": "Recomendados (banners)", "comp": "Banners", "group": "banners", "segs": {"ALL": {"Dic 2025": 70531, "Ene 2026": 62094, "Feb 2026": 55227, "Mar 2026": 55079, "Abr 2026": 46894}, "(not set)": {"Dic 2025": 252, "Ene 2026": 278, "Feb 2026": 226, "Mar 2026": 305, "Abr 2026": 505}, "C&P": {"Dic 2025": 177, "Ene 2026": 147, "Feb 2026": 124, "Mar 2026": 78, "Abr 2026": 62}, "IDENTITE": {"Dic 2025": 9550, "Ene 2026": 8454, "Feb 2026": 7907, "Mar 2026": 6686, "Abr 2026": 5020}, "Plan Social": {"Dic 2025": 6292, "Ene 2026": 5690, "Feb 2026": 3529, "Mar 2026": 3612, "Abr 2026": 2694}, "Previsional": {"Dic 2025": 16899, "Ene 2026": 15154, "Feb 2026": 13643, "Mar 2026": 16471, "Abr 2026": 14007}, "PyME": {"Dic 2025": 32, "Ene 2026": 29, "Feb 2026": 18, "Mar 2026": 5, "Abr 2026": 11}, "PyME PLUS": {"Dic 2025": 0, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 1}, "Renta Masiva": {"Dic 2025": 37328, "Ene 2026": 32342, "Feb 2026": 29780, "Mar 2026": 27922, "Abr 2026": 24594}, "Segmento PyME": {"Dic 2025": 1, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "chat_header": {"name": "Chat (botón header)", "comp": "Header", "group": "header", "segs": {"ALL": {"Dic 2025": 52308, "Ene 2026": 51604, "Feb 2026": 46748, "Mar 2026": 50499, "Abr 2026": 53731}, "Renta Masiva": {"Dic 2025": 28405, "Ene 2026": 27941, "Feb 2026": 25303, "Mar 2026": 27444, "Abr 2026": 28305}, "Previsional": {"Dic 2025": 13144, "Ene 2026": 13571, "Feb 2026": 12129, "Mar 2026": 13020, "Abr 2026": 15002}, "Plan Social": {"Dic 2025": 5118, "Ene 2026": 4484, "Feb 2026": 4174, "Mar 2026": 4105, "Abr 2026": 4216}, "IDENTITE": {"Dic 2025": 3615, "Ene 2026": 3609, "Feb 2026": 3205, "Mar 2026": 3475, "Abr 2026": 3490}, "(not set)": {"Dic 2025": 1862, "Ene 2026": 1851, "Feb 2026": 1796, "Mar 2026": 2313, "Abr 2026": 2588}, "C&P": {"Dic 2025": 134, "Ene 2026": 117, "Feb 2026": 120, "Mar 2026": 124, "Abr 2026": 111}, "PyME": {"Dic 2025": 28, "Ene 2026": 30, "Feb 2026": 21, "Mar 2026": 18, "Abr 2026": 19}, "Segmento PyME": {"Dic 2025": 2, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}, "E&P PF": {"Dic 2025": 0, "Ene 2026": 1, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "header_nombre": {"name": "Header — Datos personales", "comp": "Header", "group": "header", "segs": {"ALL": {"Dic 2025": 57251, "Ene 2026": 55712, "Feb 2026": 54568, "Mar 2026": 57797, "Abr 2026": 61913}, "Renta Masiva": {"Dic 2025": 31524, "Ene 2026": 31010, "Feb 2026": 30361, "Mar 2026": 32418, "Abr 2026": 34178}, "Previsional": {"Dic 2025": 11841, "Ene 2026": 11130, "Feb 2026": 10740, "Mar 2026": 10679, "Abr 2026": 11936}, "Plan Social": {"Dic 2025": 7591, "Ene 2026": 7327, "Feb 2026": 7413, "Mar 2026": 7691, "Abr 2026": 8310}, "IDENTITE": {"Dic 2025": 3925, "Ene 2026": 3791, "Feb 2026": 3462, "Mar 2026": 3765, "Abr 2026": 3901}, "(not set)": {"Dic 2025": 2186, "Ene 2026": 2279, "Feb 2026": 2437, "Mar 2026": 3090, "Abr 2026": 3416}, "C&P": {"Dic 2025": 145, "Ene 2026": 138, "Feb 2026": 123, "Mar 2026": 133, "Abr 2026": 142}, "PyME": {"Dic 2025": 34, "Ene 2026": 34, "Feb 2026": 29, "Mar 2026": 21, "Abr 2026": 29}, "PyME PLUS": {"Dic 2025": 1, "Ene 2026": 2, "Feb 2026": 2, "Mar 2026": 0, "Abr 2026": 1}, "MEGRA": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 1, "Mar 2026": 0, "Abr 2026": 0}, "Segmento PyME": {"Dic 2025": 3, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}, "cerrar_sesion": {"name": "Cerrar sesión", "comp": "Acciones", "group": "acciones", "segs": {"ALL": {"Dic 2025": 76975, "Ene 2026": 73795, "Feb 2026": 71606, "Mar 2026": 74798, "Abr 2026": 76544}, "Previsional": {"Dic 2025": 35280, "Ene 2026": 34489, "Feb 2026": 33421, "Mar 2026": 34834, "Abr 2026": 36590}, "Renta Masiva": {"Dic 2025": 29054, "Ene 2026": 27367, "Feb 2026": 26568, "Mar 2026": 27796, "Abr 2026": 27924}, "IDENTITE": {"Dic 2025": 7900, "Ene 2026": 7654, "Feb 2026": 7387, "Mar 2026": 7608, "Abr 2026": 7581}, "Plan Social": {"Dic 2025": 3551, "Ene 2026": 3312, "Feb 2026": 3232, "Mar 2026": 3364, "Abr 2026": 3183}, "(not set)": {"Dic 2025": 838, "Ene 2026": 664, "Feb 2026": 695, "Mar 2026": 902, "Abr 2026": 969}, "C&P": {"Dic 2025": 269, "Ene 2026": 235, "Feb 2026": 233, "Mar 2026": 227, "Abr 2026": 242}, "PyME": {"Dic 2025": 74, "Ene 2026": 73, "Feb 2026": 68, "Mar 2026": 65, "Abr 2026": 53}, "PyME PLUS": {"Dic 2025": 1, "Ene 2026": 1, "Feb 2026": 2, "Mar 2026": 2, "Abr 2026": 2}, "Segmento PyME": {"Dic 2025": 8, "Ene 2026": 0, "Feb 2026": 0, "Mar 2026": 0, "Abr 2026": 0}}}};
 const HS={"header_nombre": ["5%", "8%", "50%", "7%"], "chat_header": ["62%", "8%", "30%", "7%"], "cuenta": ["2%", "18%", "55%", "11%"], "aliascbu": ["55%", "18%", "42%", "4%"], "transferir": ["9.5%", "31%", "22.5%", "2.5%"], "ingresar": ["34%", "31%", "22.5%", "2.5%"], "extraer": ["58.5%", "31%", "22.5%", "2.5%"], "qa_hacer_una_recarga": ["6.5%", "40%", "22%", "16.5%"], "qa_inversion_rapida": ["29.5%", "40%", "22%", "16.5%"], "qa_plazo_fijo": ["52.5%", "40%", "22%", "16.5%"], "qa_compra_y_venta_dolar": ["75.5%", "40%", "22%", "16.5%"], "qa_chat": ["6.5%", "54%", "22%", "10.5%"], "qa_acciones_y_bonos": ["29.5%", "54%", "22%", "10.5%"], "qa_tienda": ["51.5%", "54%", "22%", "10.5%"], "qa_mostrar_mas": ["74.5%", "54%", "22%", "10.5%"], "recomendados": ["2%", "73.5%", "96%", "7.8%"], "nav_inicio": ["0%", "89%", "20%", "6.8%"], "nav_tarjetas": ["20%", "89%", "20%", "6.8%"], "nav_qr": ["40%", "85%", "20%", "6.8%"], "nav_prestamos": ["60%", "89%", "20%", "6.8%"], "nav_menu": ["80%", "89%", "20%", "6.8%"]};
-const GL={"all": "Todos", "header": "Header", "cuenta": "Cuenta/CTAs", "smartmsg": "SmartMessage", "qa": "Quick Access", "gamification": "Gamificación", "banners": "Banners", "nav": "Bottom Nav"};
+const GL={"all": "Todos", "header": "Header", "cuenta": "Cuenta/CTAs", "smartmsg": "SmartMessage", "qa": "Quick Access", "gamification": "Gamificación", "banners": "Banners", "nav": "Bottom Nav", "acciones": "Acciones"};
+const ALL_SEGS=["Renta Masiva", "Previsional", "Plan Social", "IDENTITE", "C&P", "PyME", "PyME PLUS", "Segmento PyME", "(not set)", "MEGRA", "E&P PF"];
+const SEG_COLORS={"Renta Masiva": "#EA4E65", "Previsional": "#5b5fc7", "Plan Social": "#25d366", "IDENTITE": "#f5a623", "C&P": "#00C4A0", "PyME": "#8B2FC9", "PyME PLUS": "#c77dff", "Segmento PyME": "#9d4edd", "(not set)": "#adb5bd", "MEGRA": "#6c757d", "E&P PF": "#495057"};
+const SEG_SHORT={"Renta Masiva": "Renta", "Previsional": "Prev.", "Plan Social": "P.Social", "IDENTITE": "IDENT.", "C&P": "C&P", "PyME": "PyME", "PyME PLUS": "PyME+", "Segmento PyME": "Seg.PyME", "(not set)": "N/D", "MEGRA": "MEGRA", "E&P PF": "E&P PF"};
 
 let period='Abr 2026', activeGroup='all';
+let activeSets=new Set();
 
-// Build zones
-const pf=document.getElementById('pf');
-Object.entries(HS).forEach(([k,[l,t,w2,h2]])=>{
-  const d=document.createElement('div');
-  d.className='zone'; d.id='zone-'+k; d.dataset.k=k;
-  d.style.cssText=`left:${l};top:${t};width:${w2};height:${h2};`;
-  d.innerHTML=`<div class="ho" id="ho-${k}"></div><div class="badge" id="b-${k}"></div>`;
-  d.addEventListener('mouseenter',()=>onZH(k));
-  d.addEventListener('mouseleave',()=>onZL());
-  pf.appendChild(d);
+// Segment chips
+const chipsDiv=document.getElementById('seg-chips');
+const allChip=document.createElement('button');
+allChip.className='chip chip-all on'; allChip.textContent='Todos'; allChip.dataset.s='ALL';
+allChip.onclick=selAll;
+chipsDiv.appendChild(allChip);
+ALL_SEGS.forEach(s=>{
+  const col=SEG_COLORS[s]||'#888';
+  const b=document.createElement('button');
+  b.className='chip'; b.dataset.s=s;
+  b.innerHTML=`<span class="chip-dot" style="background:${col}"></span>${s}`;
+  b.onclick=()=>toggleSeg(s);
+  chipsDiv.appendChild(b);
 });
 
-// Build filters
+function updateChips(){
+  const isAll=activeSets.size===0;
+  allChip.classList.toggle('on',isAll);
+  allChip.style.background=isAll?'#222':'#f8f8f8';
+  allChip.style.borderColor=isAll?'#222':'#e0e0e0';
+  allChip.style.color=isAll?'white':'#666';
+  document.querySelectorAll('.chip[data-s]').forEach(b=>{
+    if(b.dataset.s==='ALL') return;
+    const on=activeSets.has(b.dataset.s);
+    const col=SEG_COLORS[b.dataset.s]||'#888';
+    b.classList.toggle('on',on);
+    b.style.background=on?col:'#f8f8f8';
+    b.style.borderColor=on?col:'#e0e0e0';
+    b.style.color=on?'white':'#666';
+  });
+}
+function toggleSeg(s){
+  if(activeSets.has(s)) activeSets.delete(s);
+  else activeSets.add(s);
+  if(activeSets.size===0) selAll();
+  else { updateChips(); render(); }
+}
+function selAll(){ activeSets.clear(); updateChips(); render(); }
+function selNone(){ ALL_SEGS.forEach(s=>activeSets.add(s)); updateChips(); render(); }
+
+// Component filters
 const gfd=document.getElementById('gf');
 Object.entries(GL).forEach(([gk,gl])=>{
   const b=document.createElement('button');
@@ -146,24 +219,55 @@ Object.entries(GL).forEach(([gk,gl])=>{
   gfd.appendChild(b);
 });
 
+// Hotspot zones
+const pf=document.getElementById('pf');
+Object.entries(HS).forEach(([k,[l,t,w2,h2]])=>{
+  if(h2==='0%') return;
+  const d=document.createElement('div');
+  d.className='zone'; d.id='zone-'+k; d.dataset.k=k;
+  d.style.cssText=`left:${l};top:${t};width:${w2};height:${h2};`;
+  d.innerHTML=`<div class="ho" id="ho-${k}"></div><div class="badge" id="b-${k}"></div>`;
+  d.addEventListener('mouseenter',()=>onZH(k));
+  d.addEventListener('mouseleave',()=>onZL());
+  pf.appendChild(d);
+});
+
 const fmt=n=>(!n||n===0)?'—':n.toLocaleString('es-AR');
 const fmtK=n=>{if(!n||n===0)return'';if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return Math.round(n/1e3)+'K';return''+n};
-const heatC=r=>r>0.65?`rgba(234,78,101,${(0.22+r*0.28).toFixed(2)})`:r>0.3?`rgba(245,166,35,${(0.16+r*0.30).toFixed(2)})`:` rgba(76,175,80,${(0.13+r*0.22).toFixed(2)})`;
-const barC=r=>r>0.65?'#EA4E65':r>0.3?'#f5a623':'#4CAF50';
-const gv=k=>DATA[k]?.vals?.[period]||0;
-const fk=()=>activeGroup==='all'?Object.keys(DATA):Object.keys(DATA).filter(k=>DATA[k].group===activeGroup);
-const mx=ks=>Math.max(1,...ks.map(k=>gv(k)));
-const vp=k=>{const mi=MESES.indexOf(period);if(mi<=0)return null;const c=gv(k),p=DATA[k]?.vals?.[MESES[mi-1]]||0;return p?(c-p)/p*100:null};
+const hC=r=>r>0.65?`rgba(234,78,101,${(0.22+r*0.28).toFixed(2)})`:r>0.3?`rgba(245,166,35,${(0.16+r*0.30).toFixed(2)})`:` rgba(76,175,80,${(0.13+r*0.22).toFixed(2)})`;
+const bC=r=>r>0.65?'#EA4E65':r>0.3?'#f5a623':'#4CAF50';
+function gv(k){
+  const segs=DATA[k]?.segs; if(!segs) return 0;
+  if(activeSets.size===0) return segs['ALL']?.[period]||0;
+  return [...activeSets].reduce((acc,s)=>acc+(segs[s]?.[period]||0),0);
+}
+function fk(){return activeGroup==='all'?Object.keys(DATA):Object.keys(DATA).filter(k=>DATA[k].group===activeGroup)}
+function mx(ks){return Math.max(1,...ks.map(k=>gv(k)))}
+function vp(k){
+  const mi=MESES.indexOf(period); if(mi<=0) return null;
+  const segs=DATA[k]?.segs; if(!segs) return null;
+  const src=activeSets.size===0?['ALL']:[...activeSets];
+  let curr=0,prev=0;
+  src.forEach(s=>{curr+=segs[s]?.[period]||0;prev+=segs[s]?.[MESES[mi-1]]||0;});
+  return prev?(curr-prev)/prev*100:null;
+}
 
 function render(){
   const aks=fk(), mv=mx(aks);
   Object.keys(HS).forEach(k=>{
-    const ho=document.getElementById('ho-'+k),b=document.getElementById('b-'+k),z=document.getElementById('zone-'+k);
-    if(!z)return;
+    const ho=document.getElementById('ho-'+k);
+    const b=document.getElementById('b-'+k);
+    const z=document.getElementById('zone-'+k);
+    if(!z) return;
     const ing=activeGroup==='all'||DATA[k]?.group===activeGroup;
     z.classList.toggle('dimmed',!ing);
-    if(ing){const v=gv(k),r=v/mv;if(ho)ho.style.background=v>0?heatC(r):'transparent';if(b)b.textContent=v>0?fmtK(v):'';}
+    if(ing){
+      const v=gv(k),r=v/mv;
+      if(ho) ho.style.background=v>0?hC(r):'transparent';
+      if(b)  b.textContent=v>0?fmtK(v):'';
+    }
   });
+
   const sa=aks.filter(k=>gv(k)>0).sort((a,b)=>gv(b)-gv(a));
   if(sa.length){
     const tk=sa[0],tv=gv(tk);
@@ -174,30 +278,54 @@ function render(){
       const col=pct>=0?'#2e9e5b':'#EA4E65',arr=pct>=0?'▲':'▼';
       document.getElementById('sv-var').innerHTML=`<span style="color:${col}">${arr} ${Math.abs(pct).toFixed(1)}%</span>`;
       document.getElementById('sv-vsub').textContent='vs '+MESES[MESES.indexOf(period)-1];
-    }
+    } else { document.getElementById('sv-var').textContent='—'; document.getElementById('sv-vsub').textContent=''; }
   }
-  document.getElementById('sv-cnt').textContent=sa.length;
-  document.getElementById('sv-csub').textContent=GL[activeGroup];
-  document.getElementById('rk-ttl').textContent=(activeGroup==='all'?'Todos':GL[activeGroup])+' — '+period;
-  const maxR=gv(sa[0])||1, mi=MESES.indexOf(period);
+
+  if(activeSets.size===0){
+    document.getElementById('sv-seg').textContent='Todos';
+    document.getElementById('sv-ssub').textContent=sa.length+' zonas activas';
+  } else {
+    const dots=[...activeSets].map(s=>`<span style="display:inline-flex;align-items:center;gap:3px;margin-right:3px;white-space:nowrap"><span style="width:7px;height:7px;border-radius:50%;background:${SEG_COLORS[s]};display:inline-block;flex-shrink:0"></span>${SEG_SHORT[s]||s}</span>`).join('');
+    document.getElementById('sv-seg').innerHTML=dots;
+    document.getElementById('sv-ssub').textContent=activeSets.size+' seg. · '+sa.length+' zonas';
+  }
+
+  document.getElementById('rk-ttl').textContent=(activeGroup==='all'?'Todos':GL[activeGroup])+' — '+period+(activeSets.size>0?' · '+activeSets.size+' seg.':'');
+
+  const maxR=gv(sa[0])||1;
+  const showSegs=activeSets.size>0?[...activeSets]:ALL_SEGS;
   document.getElementById('rk').innerHTML=sa.map((k,i)=>{
-    const z=DATA[k],v=gv(k),r=v/maxR,bc=barC(r);
+    const z=DATA[k],v=gv(k),r=v/maxR,bc=bC(r);
     const pct=vp(k);
     let vh='';
-    if(pct!==null){const col=pct>=0?'#2e9e5b':'#EA4E65',arr=pct>=0?'▲':'▼';vh=` · <span style="color:${col};font-weight:700">${arr} ${Math.abs(pct).toFixed(1)}%</span>`;}
+    if(pct!==null){
+      const col=pct>=0?'#2e9e5b':'#EA4E65',arr=pct>=0?'▲':'▼';
+      vh=` · <span style="color:${col};font-weight:700">${arr} ${Math.abs(pct).toFixed(1)}%</span>`;
+    }
     const nz=!HS[k]?'<span class="no-z">sin zona</span>':'';
-    return`<div class="rk" id="rk-${k}" data-k="${k}" onmouseenter="onLH('${k}')" onmouseleave="onLL()">
+    const pills=showSegs.map(s=>{
+      const sv=z.segs?.[s]?.[period]||0; if(!sv) return '';
+      const col=SEG_COLORS[s]||'#aaa', short=SEG_SHORT[s]||s;
+      return `<span class="sp"><span class="sp-dot" style="background:${col}"></span><span style="color:${col};font-weight:600">${short}</span>&thinsp;${fmtK(sv)}</span>`;
+    }).filter(Boolean).join('');
+    return `<div class="rk" id="rk-${k}" data-k="${k}" onmouseenter="onLH('${k}')" onmouseleave="onLL()">
       <span class="rk-n">${i+1}</span>
-      <div class="rk-info"><div class="rk-name">${z.name} ${nz}</div><div class="rk-sub">${z.comp}${vh}</div></div>
-      <div class="rk-right"><div class="rk-val">${fmt(v)}</div><div class="rk-bw"><div class="rk-bf" style="width:${Math.round(r*100)}%;background:${bc}"></div></div></div>
+      <div class="rk-info">
+        <div class="rk-name">${z.name}${nz}</div>
+        <div class="rk-sub">${z.comp}${vh}</div>
+        ${pills?`<div class="seg-breakdown">${pills}</div>`:''}
+      </div>
+      <div class="rk-right">
+        <div class="rk-val">${fmt(v)}</div>
+        <div class="rk-bw"><div class="rk-bf" style="width:${Math.round(r*100)}%;background:${bc}"></div></div>
+      </div>
     </div>`;
   }).join('');
 }
 
 function onZH(k){
   document.querySelectorAll('.rk').forEach(el=>el.classList.toggle('active',el.dataset.k===k));
-  const row=document.getElementById('rk-'+k);
-  if(row)row.scrollIntoView({behavior:'smooth',block:'nearest'});
+  document.getElementById('rk-'+k)?.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function onZL(){document.querySelectorAll('.rk').forEach(el=>el.classList.remove('active'));}
 function onLH(k){
