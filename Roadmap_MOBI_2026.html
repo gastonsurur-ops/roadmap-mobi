@@ -47,7 +47,7 @@ body{font-family:'Trebuchet MS',Arial,sans-serif;background:#F7F3EE;-webkit-text
 .lcount{font-weight:900;color:#2D2D2D;font-size:11px}
 .fg{display:grid;gap:6px}
 .talla-grid{grid-template-columns:repeat(3,1fr)}
-.tipo-grid{grid-template-columns:repeat(3,1fr)}
+.tipo-grid{grid-template-columns:repeat(2,1fr)}
 .fb{background:#F7F3EE;border:1.5px solid transparent;border-radius:6px;padding:10px 6px;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .12s}
 .fb:active,.fb:hover{border-color:#E8001C;background:#FFF8F8}
 .fb.on{border-color:#E8001C;background:#FFF5F5}
@@ -60,30 +60,29 @@ body{font-family:'Trebuchet MS',Arial,sans-serif;background:#F7F3EE;-webkit-text
 .br-track{flex:1;height:7px;background:#EDE8E2;border-radius:3px;overflow:hidden}
 .br-fill{height:100%;border-radius:3px;background:#E8001C;transition:width .3s}
 .br-val{font-size:10px;font-weight:700;color:#2D2D2D;width:18px;flex-shrink:0}
-.jira-panel{background:#fff;border-radius:8px;border:1px solid #EDE8E2;padding:14px}
-.jira-search-wrap{position:relative;margin-bottom:10px}
-.jira-input{width:100%;padding:9px 12px 9px 32px;border:1.5px solid #EDE8E2;border-radius:6px;font-size:12px;font-family:inherit;color:#2D2D2D;background:#F7F3EE;outline:none;transition:border-color .15s}
-.jira-input:focus{border-color:#E8001C;background:#fff}
-.jira-input::placeholder{color:#BBB}
-.jira-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;color:#BBB;pointer-events:none}
-.jira-chips{display:flex;flex-wrap:wrap;gap:5px;min-height:28px}
-.jira-chip{font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;cursor:pointer;border:1.5px solid transparent;transition:all .12s;-webkit-tap-highlight-color:transparent;white-space:nowrap}
-.jira-chip:hover{border-color:#E8001C}
-.jira-chip.on{border-color:#E8001C;background:#FFF5F5;color:#E8001C}
-.jira-chip.prm{background:#FCE7F3;color:#831843}
-.jira-chip.nmb{background:#DBEAFE;color:#1e40af}
-.jira-chip.other{background:#F3F4F6;color:#6B7280}
-.jira-chip .cnt{font-size:9px;opacity:.7;margin-left:3px}
-.jira-empty{font-size:10px;color:#CCC;font-style:italic;padding:4px 0}
+.search-panel{background:#fff;border-radius:8px;border:1px solid #EDE8E2;padding:14px}
+.search-input-wrap{position:relative;margin-bottom:10px}
+.search-input{width:100%;padding:9px 12px 9px 30px;border:1.5px solid #EDE8E2;border-radius:6px;font-size:12px;font-family:inherit;color:#2D2D2D;background:#F7F3EE;outline:none;transition:border-color .15s}
+.search-input:focus{border-color:#E8001C;background:#fff}
+.search-input::placeholder{color:#BBB}
+.search-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:12px;color:#BBB;pointer-events:none}
+.chips{display:flex;flex-wrap:wrap;gap:5px;min-height:24px}
+.chip{font-size:10px;font-weight:700;padding:4px 10px;border-radius:4px;cursor:pointer;border:1.5px solid transparent;transition:all .12s;-webkit-tap-highlight-color:transparent;white-space:nowrap}
+.chip:hover{border-color:#E8001C}
+.chip.on{border-color:#E8001C;background:#FFF5F5;color:#E8001C}
+.chip.ni{background:#E0F4F6;color:#0369A1}
+.chip .cnt{font-size:9px;opacity:.7;margin-left:3px}
+.chip-empty{font-size:10px;color:#CCC;font-style:italic;padding:3px 0}
 .tl-panel{background:#fff;border-radius:8px;border:1px solid #EDE8E2;padding:14px}
-.tl-hint{font-size:9px;color:#CCC;margin-bottom:6px}
-.tl-out{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
-.tl-scroll{min-width:920px;padding:14px 0 4px}
-.tl-body{position:relative;display:flex;justify-content:space-between;align-items:flex-start;padding:0 12px}
-.tl-line{position:absolute;top:14px;left:26px;right:26px;height:3px;background:#EDE8E2;border-radius:2px;z-index:0}
+.tl-hint{font-size:9px;color:#CCC;margin-bottom:8px}
+.tl-out{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+.tl-scroll{min-width:940px;padding:20px 24px 4px}
+.tl-body{position:relative}
+.tl-line-wrap{height:3px;background:#EDE8E2;border-radius:2px;position:relative}
 .tl-prog{position:absolute;left:0;top:0;height:3px;background:#E8001C;border-radius:2px}
-.tc{display:flex;flex-direction:column;align-items:center;width:110px;flex-shrink:0;position:relative;z-index:1}
-.nd-wrap{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.tl-nodes{display:flex;justify-content:space-between;margin-top:-14px}
+.tc{display:flex;flex-direction:column;align-items:center;width:105px;flex-shrink:0}
+.nd-wrap{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0;background:#F7F3EE}
 .nd-d{background:#2D2D2D;color:#fff}
 .nd-n{background:#E8001C;color:#fff;box-shadow:0 0 0 4px #FECACA}
 .nd-f{background:#EDE8E2;color:#BBB;border:2px solid #D1D5DB}
@@ -91,26 +90,26 @@ body{font-family:'Trebuchet MS',Arial,sans-serif;background:#F7F3EE;-webkit-text
 .tc-date.r{color:#E8001C}.tc-date.g{color:#AAA}
 .tc-q{font-size:8px;color:#BBB;text-transform:uppercase;letter-spacing:.04em;margin-top:1px}
 .tc-cards{display:flex;flex-direction:column;gap:3px;margin-top:8px;width:100%}
-.cc{border-radius:4px;padding:5px 7px;border:1px solid #EDE8E2;border-left:3px solid #D1D5DB;background:#fff}
+.cc{border-radius:4px;padding:6px 8px;border:1px solid #EDE8E2;border-left:3px solid #D1D5DB;background:#fff}
 .cc.s-done{border-left-color:#2D2D2D;background:#F9F9F9}
 .cc.s-wip{border-left-color:#E8001C}
 .cc.s-wip.delayed{background:#FFF5F5}
 .cc.s-todo{border-left-color:#D1D5DB}
-.cn{font-size:9px;font-weight:700;color:#2D2D2D;line-height:1.3;margin-bottom:3px}
+.cn{font-size:9px;font-weight:700;color:#2D2D2D;line-height:1.3;margin-bottom:2px}
+.cp{font-size:8px;color:#AAA;line-height:1.2;margin-bottom:3px;font-style:italic}
 .bgs{display:flex;gap:2px;flex-wrap:wrap}
 .b{font-size:7px;font-weight:700;padding:1px 4px;border-radius:2px;text-transform:uppercase}
 .b-done{background:#2D2D2D;color:#fff}.b-wip{background:#E8001C;color:#fff}.b-todo{background:#E5E7EB;color:#374151}
 .b-hold{background:#FEF3C7;color:#92400E}.b-anal{background:#EDE9FE;color:#5B21B6}.b-dep{background:#F3F4F6;color:#9CA3AF}
-.b-bau{background:#DBEAFE;color:#1e40af}.b-nuevo{background:#FCE7F3;color:#831843}.b-carry{background:#FEF3C7;color:#78350f}.b-mant{background:#E0F2FE;color:#0369A1}
+.b-bau{background:#DBEAFE;color:#1e40af}.b-est{background:#FCE7F3;color:#831843}.b-norm{background:#FEF3C7;color:#78350f}
 .b-delay{background:#FEE2E2;color:#991b1b;font-size:6px}.b-sz{background:#F3F4F6;color:#6B7280}
-.b-jira{background:#EDE9FE;color:#5B21B6;cursor:pointer;text-decoration:none}
-.b-jira:hover{background:#DDD9FE}
 .nd-empty{font-size:8px;color:#DDD;text-align:center;padding:5px 0}
 .tbd-panel{background:#fff;border-radius:8px;border:1px solid #EDE8E2;padding:14px}
 .tbd-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
 .tbd-c{background:#F7F3EE;border-radius:5px;padding:7px 9px;border-left:3px solid #D1D5DB}
 .tbd-c.s-hold{border-left-color:#d97706}.tbd-c.s-anal{border-left-color:#7C3AED}.tbd-c.s-dep{opacity:.5}
-.tbd-name{font-size:10px;font-weight:700;color:#2D2D2D;margin-bottom:4px;line-height:1.3}
+.tbd-name{font-size:10px;font-weight:700;color:#2D2D2D;margin-bottom:2px;line-height:1.3}
+.tbd-proj{font-size:8px;color:#AAA;margin-bottom:4px;line-height:1.2;font-style:italic}
 .empty-msg{font-size:12px;color:#CCC;padding:20px;text-align:center;grid-column:1/-1}
 .footer{padding:12px 16px;border-top:1px solid #EDE8E2;background:#fff;margin-top:4px}
 .ft{font-size:9px;color:#CCC;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:2px}
@@ -118,7 +117,7 @@ body{font-family:'Trebuchet MS',Arial,sans-serif;background:#F7F3EE;-webkit-text
   .hdr{padding:18px 28px}.ttl{font-size:22px}.sub{display:block}
   .af-bar{padding:8px 28px}.body{padding:18px 28px}
   .fg.talla-grid{grid-template-columns:repeat(6,1fr)}
-  .fg.tipo-grid{grid-template-columns:repeat(5,1fr)}
+  .fg.tipo-grid{grid-template-columns:repeat(4,1fr)}
   .donut-row{flex-direction:column;align-items:center}
   .donut-wrap{width:120px;height:120px}
   .donut-wrap canvas{width:120px!important;height:120px!important}
@@ -137,7 +136,7 @@ body{font-family:'Trebuchet MS',Arial,sans-serif;background:#F7F3EE;-webkit-text
   <div>
     <div class="eye">Célula MOBI · Supervielle</div>
     <div class="ttl">Roadmap 2026</div>
-    <div class="sub">52 iniciativas · filtros por estado, talla, tipo y JIRA</div>
+    <div class="sub">52 iniciativas · filtros por estado, talla, tipo e iniciativa</div>
   </div>
   <div class="hdr-r"><div class="dl">Actualización</div><div class="dv">May 2026</div></div>
 </div>
@@ -182,9 +181,8 @@ body{font-family:'Trebuchet MS',Arial,sans-serif;background:#F7F3EE;-webkit-text
         <div class="fg tipo-grid">
           <div class="fb on" data-tp="all" onclick="setTipo('all')"><div class="fb-sz" style="font-size:11px">Todos</div><div class="fb-lbl">tipos</div><div class="fb-cnt" id="tp-all">52</div></div>
           <div class="fb" data-tp="BAU" onclick="setTipo('BAU')"><div class="fb-sz" style="font-size:12px">BAU</div><div class="fb-lbl">bau</div><div class="fb-cnt" id="tp-BAU">0</div></div>
-          <div class="fb" data-tp="Mantenimiento" onclick="setTipo('Mantenimiento')"><div class="fb-sz" style="font-size:11px">Mant.</div><div class="fb-lbl">mantenimiento</div><div class="fb-cnt" id="tp-Mantenimiento">0</div></div>
-          <div class="fb" data-tp="Nuevo" onclick="setTipo('Nuevo')"><div class="fb-sz" style="font-size:11px">Nuevo</div><div class="fb-lbl">nueva func.</div><div class="fb-cnt" id="tp-Nuevo">0</div></div>
-          <div class="fb" data-tp="Carry Over" onclick="setTipo('Carry Over')"><div class="fb-sz" style="font-size:11px">Carry</div><div class="fb-lbl">carry over</div><div class="fb-cnt" id="tp-Carry Over">0</div></div>
+          <div class="fb" data-tp="Proyecto Estratégico" onclick="setTipo('Proyecto Estratégico')"><div class="fb-sz" style="font-size:10px">Estratég.</div><div class="fb-lbl">proy. estratégico</div><div class="fb-cnt" id="tp-Proyecto Estratégico">0</div></div>
+          <div class="fb" data-tp="Normativo" onclick="setTipo('Normativo')"><div class="fb-sz" style="font-size:11px">Norm.</div><div class="fb-lbl">normativo</div><div class="fb-cnt" id="tp-Normativo">0</div></div>
         </div>
       </div>
       <div class="panel">
@@ -193,22 +191,27 @@ body{font-family:'Trebuchet MS',Arial,sans-serif;background:#F7F3EE;-webkit-text
       </div>
     </div>
   </div>
-  <div class="jira-panel">
-    <div class="ptitle">Filtrar por ticket JIRA</div>
-    <div class="jira-search-wrap">
-      <span class="jira-icon">🔍</span>
-      <input class="jira-input" id="jira-input" type="text" placeholder="Buscá un ticket, ej: PRM-459 o NMB-7093..." oninput="onJiraSearch(this.value)">
+
+  <div class="search-panel">
+    <div class="ptitle">Filtrar por nombre de iniciativa</div>
+    <div class="search-input-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" id="ni-input" type="text" placeholder="Ej: Business As Usual, APP + AI, Estrategia de prevención..." oninput="buildNIChips(this.value)">
     </div>
-    <div class="jira-chips" id="jira-chips"></div>
+    <div class="chips" id="ni-chips"></div>
   </div>
+
   <div class="tl-panel">
     <div class="ptitle">Línea de tiempo · New Due Date</div>
     <div class="tl-hint">← deslizá para ver todas las fechas →</div>
-    <div class="tl-out"><div class="tl-scroll"><div class="tl-body">
-      <div class="tl-line"><div class="tl-prog" id="tl-prog"></div></div>
-      <div id="tl-cols" style="display:flex;justify-content:space-between;width:100%;position:relative;z-index:1"></div>
-    </div></div></div>
+    <div class="tl-out"><div class="tl-scroll">
+      <div class="tl-body">
+        <div class="tl-line-wrap"><div class="tl-prog" id="tl-prog"></div></div>
+        <div class="tl-nodes" id="tl-nodes"></div>
+      </div>
+    </div></div>
   </div>
+
   <div class="tbd-panel">
     <div class="ptitle" id="tbd-title">Sin fecha comprometida</div>
     <div class="tbd-grid" id="tbd-grid"></div>
@@ -220,58 +223,58 @@ body{font-family:'Trebuchet MS',Arial,sans-serif;background:#F7F3EE;-webkit-text
 </div>
 <script>
 var INITS=[
-  {n:"Sorteo Mundial",s:"Done",t:"Nuevo",sz:"S",f:"27/01",q:"Q1",delayed:false,j:"PRM-629",ju:"https://jirasupervielle.atlassian.net/browse/PRM-629"},
-  {n:"Upgrade SDK VU",s:"Done",t:"Mantenimiento",sz:"S",f:"05/03",q:"Q1",delayed:false,j:"NMB-7093",ju:"https://jirasupervielle.atlassian.net/browse/NMB-7093"},
-  {n:"Soft token (HOTP)",s:"Done",t:"Nuevo",sz:"L",f:"05/03",q:"Q1",delayed:false,j:"NMB-7946",ju:"https://jirasupervielle.atlassian.net/browse/NMB-7946"},
-  {n:"Rediseño saltos taza de café",s:"Done",t:"BAU",sz:"XS",f:"05/03",q:"Q1",delayed:false,j:"NMB-9063",ju:"https://jirasupervielle.atlassian.net/browse/NMB-9063"},
-  {n:"Desacople autenticación vs perfil",s:"Done",t:"BAU",sz:"S",f:"26/03",q:"Q1",delayed:false,j:"NMB-9063",ju:"https://jirasupervielle.atlassian.net/browse/NMB-9063"},
-  {n:"Préstamos: home + alta + tenencia",s:"Done",t:"Carry Over",sz:"L",f:"21/04",q:"Q1",delayed:false,j:"NMB-7948",ju:"https://jirasupervielle.atlassian.net/browse/NMB-7948"},
-  {n:"SUFA BETA cerrado",s:"Done",t:"Nuevo",sz:"L",f:"24/04",q:"Q1",delayed:false,j:"",ju:""},
-  {n:"Facephi Nuevo DNI",s:"Done",t:"BAU",sz:"S",f:"24/04",q:"Q1",delayed:false,j:"NMB-9063",ju:"https://jirasupervielle.atlassian.net/browse/NMB-9063"},
-  {n:"TC pausado adicional",s:"Done",t:"Carry Over",sz:"S",f:"07/05",q:"Q2",delayed:false,j:"PRM-379",ju:"https://jirasupervielle.atlassian.net/browse/PRM-379"},
-  {n:"AR (2FA)",s:"Done",t:"Carry Over",sz:"S",f:"07/05",q:"Q2",delayed:false,j:"PRM-1001",ju:"https://jirasupervielle.atlassian.net/browse/PRM-1001"},
-  {n:"Android 16 KB",s:"Done",t:"Mantenimiento",sz:"S",f:"07/05",q:"Q2",delayed:false,j:"NMB-7093",ju:"https://jirasupervielle.atlassian.net/browse/NMB-7093"},
-  {n:"Upgrade versión flutter",s:"Done",t:"Mantenimiento",sz:"S",f:"07/05",q:"Q2",delayed:false,j:"NMB-7093",ju:"https://jirasupervielle.atlassian.net/browse/NMB-7093"},
-  {n:"TC consumos pendientes",s:"Done",t:"Carry Over",sz:"S",f:"07/05",q:"Q2",delayed:false,j:"PRM-732",ju:"https://jirasupervielle.atlassian.net/browse/PRM-732"},
-  {n:"Notificación Token Supervielle",s:"Done",t:"BAU",sz:"S",f:"14/05",q:"Q2",delayed:false,j:"PRM-941",ju:"https://jirasupervielle.atlassian.net/browse/PRM-941"},
-  {n:"Rediseño cross sell seguros en pago de servicios",s:"In-Progress",t:"Carry Over",sz:"S",f:"21/05",q:"Q2",delayed:true,j:"PRM-758",ju:"https://jirasupervielle.atlassian.net/browse/PRM-758"},
-  {n:"Visualizar cuentas de desembolso en alta de préstamo",s:"In-Progress",t:"BAU",sz:"S",f:"21/05",q:"Q2",delayed:false,j:"NMB-9058",ju:"https://jirasupervielle.atlassian.net/browse/NMB-9058"},
-  {n:"Agregar deeplink para suscripción a Aerolíneas Plus",s:"In-Progress",t:"BAU",sz:"S",f:"21/05",q:"Q2",delayed:false,j:"PRM-1001",ju:"https://jirasupervielle.atlassian.net/browse/PRM-1001"},
-  {n:"Rediseño visual tarjeta cobrand Aerolíneas Plus",s:"In-Progress",t:"BAU",sz:"S",f:"21/05",q:"Q2",delayed:false,j:"PRM-1001",ju:"https://jirasupervielle.atlassian.net/browse/PRM-1001"},
-  {n:"Implementar Firebase Performance en detalle tarjetas de crédito",s:"In-Progress",t:"BAU",sz:"S",f:"21/05",q:"Q2",delayed:false,j:"NMB-9063",ju:"https://jirasupervielle.atlassian.net/browse/NMB-9063"},
-  {n:"Mejorar navegación al detalle de consumos desde push",s:"In-Progress",t:"BAU",sz:"S",f:"21/05",q:"Q2",delayed:false,j:"PRM-732",ju:"https://jirasupervielle.atlassian.net/browse/PRM-732"},
-  {n:"Rediseño login · splash · auth · olvidé mi clave",s:"In-Progress",t:"Nuevo",sz:"L",f:"11/06",q:"Q2",delayed:true,j:"PRM-459",ju:"https://jirasupervielle.atlassian.net/browse/PRM-459"},
-  {n:"Enrolamiento SAAS",s:"In-Progress",t:"BAU",sz:"M",f:"11/06",q:"Q2",delayed:false,j:"NMB-9063",ju:"https://jirasupervielle.atlassian.net/browse/NMB-9063"},
-  {n:"Facephi Advanced Injection Defense (IAD)",s:"In-Progress",t:"Mantenimiento",sz:"M",f:"11/06",q:"Q2",delayed:false,j:"NMB-7093",ju:"https://jirasupervielle.atlassian.net/browse/NMB-7093"},
-  {n:"APP+AI · Búsqueda natural de movimientos",s:"In-Progress",t:"Nuevo",sz:"M",f:"25/06",q:"Q2",delayed:true,j:"PRM-461",ju:"https://jirasupervielle.atlassian.net/browse/PRM-461"},
-  {n:"Clave de canales por caja rápida",s:"To-do",t:"Nuevo",sz:"S",f:"25/06",q:"Q2",delayed:false,j:"PRM-941",ju:"https://jirasupervielle.atlassian.net/browse/PRM-941"},
-  {n:"Integración motor de fraude en enrolamiento soft token VU",s:"To-do",t:"BAU",sz:"M",f:"25/06",q:"Q2",delayed:false,j:"PRM-941",ju:"https://jirasupervielle.atlassian.net/browse/PRM-941"},
-  {n:"Migración BIO como 2FA hacia soft token VU",s:"To-do",t:"BAU",sz:"M",f:"25/06",q:"Q2",delayed:false,j:"PRM-941",ju:"https://jirasupervielle.atlassian.net/browse/PRM-941"},
-  {n:"Fingerprint",s:"To-do",t:"Nuevo",sz:"M",f:"TBD",q:"",delayed:false,j:"PRM-941",ju:"https://jirasupervielle.atlassian.net/browse/PRM-941"},
-  {n:"Rediseño home (Panel acción · Card TC/TD · QA · Cuentas · Pago servicios · Banner)",s:"To-do",t:"Nuevo",sz:"L",f:"TBD",q:"",delayed:false,j:"PRM-459",ju:"https://jirasupervielle.atlassian.net/browse/PRM-459"},
-  {n:"Multi 2FA",s:"To-do",t:"Nuevo",sz:"M",f:"TBD",q:"",delayed:false,j:"PRM-941",ju:"https://jirasupervielle.atlassian.net/browse/PRM-941"},
-  {n:"Rediseño home evolutivo (socios)",s:"To-do",t:"Nuevo",sz:"M",f:"TBD",q:"",delayed:false,j:"PRM-459",ju:"https://jirasupervielle.atlassian.net/browse/PRM-459"},
-  {n:"Préstamos: cancelación",s:"Deprioritized",t:"Nuevo",sz:"S",f:"TBD",q:"",delayed:false,j:"NMB-7953",ju:"https://jirasupervielle.atlassian.net/browse/NMB-7953"},
-  {n:"Autenticación formulario Keycloak",s:"Deprioritized",t:"BAU",sz:"M",f:"TBD",q:"",delayed:false,j:"NMB-9063",ju:"https://jirasupervielle.atlassian.net/browse/NMB-9063"},
-  {n:"DEBIN",s:"On-Hold",t:"Nuevo",sz:"",f:"TBD",q:"",delayed:false,j:"PRM-441",ju:"https://jirasupervielle.atlassian.net/browse/PRM-441"},
-  {n:"Repetir Transferencia (IA)",s:"Under Analysis",t:"Carry Over",sz:"M",f:"TBD",q:"",delayed:false,j:"PRM-431",ju:"https://jirasupervielle.atlassian.net/browse/PRM-431"},
-  {n:"Dirección evolutivo (Predictivo & Geolocalización)",s:"On-Hold",t:"BAU",sz:"M",f:"TBD",q:"",delayed:false,j:"",ju:""},
-  {n:"Rediseño enrolamiento",s:"Under Analysis",t:"Nuevo",sz:"L",f:"TBD",q:"",delayed:false,j:"PRM-459",ju:"https://jirasupervielle.atlassian.net/browse/PRM-459"},
-  {n:"Facetec",s:"To-do",t:"Nuevo",sz:"L",f:"TBD",q:"",delayed:false,j:"PRM-941",ju:"https://jirasupervielle.atlassian.net/browse/PRM-941"},
-  {n:"Rediseño cuentas",s:"To-do",t:"Nuevo",sz:"M",f:"TBD",q:"",delayed:false,j:"PRM-459",ju:"https://jirasupervielle.atlassian.net/browse/PRM-459"},
-  {n:"Rediseño menú",s:"To-do",t:"Nuevo",sz:"S",f:"TBD",q:"",delayed:false,j:"PRM-459",ju:"https://jirasupervielle.atlassian.net/browse/PRM-459"},
-  {n:"Evolutivo préstamos (Refinanciación)",s:"To-do",t:"Nuevo",sz:"M",f:"TBD",q:"",delayed:false,j:"",ju:""},
-  {n:"Microcrédito pago de servicio",s:"To-do",t:"Nuevo",sz:"L",f:"TBD",q:"",delayed:false,j:"",ju:""},
-  {n:"Rediseño home (componente cuentas IR)",s:"To-do",t:"Nuevo",sz:"M",f:"TBD",q:"",delayed:false,j:"PRM-459",ju:"https://jirasupervielle.atlassian.net/browse/PRM-459"},
-  {n:"Carrusel de pagos",s:"To-do",t:"Nuevo",sz:"L",f:"TBD",q:"",delayed:false,j:"",ju:""},
-  {n:"Onboarding masivo",s:"To-do",t:"Nuevo",sz:"L",f:"TBD",q:"",delayed:false,j:"PRM-1041",ju:"https://jirasupervielle.atlassian.net/browse/PRM-1041"},
-  {n:"Config notificación",s:"To-do",t:"Nuevo",sz:"L",f:"TBD",q:"",delayed:false,j:"",ju:""},
-  {n:"Com. A 8406 – BCRA | Cobro con Transferencia (CCT)",s:"To-do",t:"Nuevo",sz:"XL",f:"TBD",q:"",delayed:false,j:"PRM-995",ju:"https://jirasupervielle.atlassian.net/browse/PRM-995"},
-  {n:"Transferencias · Mejoras en mensajes de error",s:"Under Analysis",t:"Carry Over",sz:"M",f:"TBD",q:"",delayed:false,j:"PRM-456",ju:"https://jirasupervielle.atlassian.net/browse/PRM-456"},
-  {n:"Normativo BCRA · vía denuncia estafas MOBILE",s:"To-do",t:"Nuevo",sz:"XS",f:"TBD",q:"",delayed:false,j:"PRM-289",ju:"https://jirasupervielle.atlassian.net/browse/PRM-289"},
-  {n:"APP+AI · Transferencia texto/voz",s:"To-do",t:"Nuevo",sz:"L",f:"TBD",q:"",delayed:false,j:"PRM-457",ju:"https://jirasupervielle.atlassian.net/browse/PRM-457"},
-  {n:"Migración flujo Botón IOL (VN & dólar MEP)",s:"To-do",t:"Nuevo",sz:"S",f:"TBD",q:"",delayed:false,j:"PRM-918",ju:"https://jirasupervielle.atlassian.net/browse/PRM-918"},
-  {n:"Click to Pay Mandate Visa / TC Débito MOBILE",s:"To-do",t:"Nuevo",sz:"XL",f:"TBD",q:"",delayed:false,j:"PRM-311",ju:"https://jirasupervielle.atlassian.net/browse/PRM-311"},
+  {n:"Sorteo Mundial",p:"Sorteo Mundial",s:"Done",t:"BAU",sz:"S",f:"27/01",q:"Q1",delayed:false},
+  {n:"Upgrade SDK VU",p:"Business As Usual",s:"Done",t:"BAU",sz:"S",f:"05/03",q:"Q1",delayed:false},
+  {n:"Soft token (HOTP)",p:"Business As Usual",s:"Done",t:"BAU",sz:"L",f:"05/03",q:"Q1",delayed:false},
+  {n:"Rediseño saltos taza de café",p:"Business As Usual",s:"Done",t:"BAU",sz:"XS",f:"05/03",q:"Q1",delayed:false},
+  {n:"Desacople autenticación vs perfil",p:"Business As Usual",s:"Done",t:"BAU",sz:"S",f:"26/03",q:"Q1",delayed:false},
+  {n:"Préstamos: home + alta + tenencia",p:"Reingenieria MS-Prestamos",s:"Done",t:"BAU",sz:"L",f:"21/04",q:"Q1",delayed:false},
+  {n:"SUFA BETA cerrado",p:"SUFA BETA cerrado",s:"Done",t:"Proyecto Estratégico",sz:"L",f:"24/04",q:"Q1",delayed:false},
+  {n:"Facephi Nuevo DNI",p:"Business As Usual",s:"Done",t:"BAU",sz:"S",f:"24/04",q:"Q1",delayed:false},
+  {n:"TC pausado adicional",p:"TC pausado adicional",s:"Done",t:"BAU",sz:"S",f:"07/05",q:"Q2",delayed:false},
+  {n:"AR (2FA)",p:"Cobrand Aerolíneas Argentinas",s:"Done",t:"BAU",sz:"S",f:"07/05",q:"Q2",delayed:false},
+  {n:"Android 16 KB",p:"Business As Usual",s:"Done",t:"BAU",sz:"S",f:"07/05",q:"Q2",delayed:false},
+  {n:"Upgrade versión flutter",p:"Business As Usual",s:"Done",t:"BAU",sz:"S",f:"07/05",q:"Q2",delayed:false},
+  {n:"TC consumos pendientes",p:"TC consumos pendientes",s:"Done",t:"BAU",sz:"S",f:"07/05",q:"Q2",delayed:false},
+  {n:"Notificación Token Supervielle",p:"Estrategia de prevención de fraude",s:"Done",t:"Proyecto Estratégico",sz:"S",f:"14/05",q:"Q2",delayed:false},
+  {n:"Rediseño cross sell seguros en pago de servicios",p:"Rediseño cross sell seguros",s:"In-Progress",t:"BAU",sz:"S",f:"21/05",q:"Q2",delayed:true},
+  {n:"Visualizar cuentas de desembolso en el alta de préstamo",p:"Business As Usual",s:"In-Progress",t:"BAU",sz:"S",f:"21/05",q:"Q2",delayed:false},
+  {n:"Agregar deeplink para suscripción a Aerolíneas Plus",p:"Cobrand Aerolíneas Argentinas",s:"In-Progress",t:"BAU",sz:"S",f:"21/05",q:"Q2",delayed:false},
+  {n:"Rediseño visual de tarjeta cobrand Aerolíneas Plus",p:"Cobrand Aerolíneas Argentinas",s:"In-Progress",t:"BAU",sz:"S",f:"21/05",q:"Q2",delayed:false},
+  {n:"Implementar Firebase Performance en pantalla detalle tarjetas de crédito",p:"Business As Usual",s:"In-Progress",t:"BAU",sz:"S",f:"21/05",q:"Q2",delayed:false},
+  {n:"Mejorar navegación al detalle de consumos desde push",p:"TC consumos pendientes",s:"In-Progress",t:"BAU",sz:"S",f:"21/05",q:"Q2",delayed:false},
+  {n:"Rediseño login · splash · auth · olvidé mi clave",p:"APP - Rediseño (Wallet-first)",s:"In-Progress",t:"Proyecto Estratégico",sz:"L",f:"11/06",q:"Q2",delayed:true},
+  {n:"Enrolamiento SAAS",p:"Business As Usual",s:"In-Progress",t:"BAU",sz:"M",f:"11/06",q:"Q2",delayed:false},
+  {n:"Facephi Advanced Injection Defense (IAD)",p:"Estrategia de prevención de fraude",s:"In-Progress",t:"Proyecto Estratégico",sz:"M",f:"11/06",q:"Q2",delayed:false},
+  {n:"APP + AI · Búsqueda natural de movimientos",p:"APP + AI",s:"In-Progress",t:"Proyecto Estratégico",sz:"M",f:"25/06",q:"Q2",delayed:true},
+  {n:"Clave de canales por caja rápida",p:"Estrategia de prevención de fraude",s:"To-do",t:"Proyecto Estratégico",sz:"S",f:"25/06",q:"Q2",delayed:false},
+  {n:"Integración motor de fraude en enrolamiento soft token VU",p:"Estrategia de prevención de fraude",s:"To-do",t:"Proyecto Estratégico",sz:"M",f:"25/06",q:"Q2",delayed:false},
+  {n:"Migración de BIO como 2FA hacia soft token VU",p:"Estrategia de prevención de fraude",s:"To-do",t:"Proyecto Estratégico",sz:"M",f:"25/06",q:"Q2",delayed:false},
+  {n:"Fingerprint",p:"Estrategia de prevención de fraude",s:"To-do",t:"Proyecto Estratégico",sz:"M",f:"TBD",q:"",delayed:false},
+  {n:"Rediseño home (Panel acción · Card TC/TD · QA · Cuentas · Pago servicios · Banner)",p:"APP - Rediseño (Wallet-first)",s:"To-do",t:"Proyecto Estratégico",sz:"L",f:"TBD",q:"",delayed:false},
+  {n:"Multi 2FA",p:"Estrategia de prevención de fraude",s:"To-do",t:"Proyecto Estratégico",sz:"M",f:"TBD",q:"",delayed:false},
+  {n:"Rediseño home evolutivo (socios)",p:"APP - Rediseño (Wallet-first)",s:"To-do",t:"Proyecto Estratégico",sz:"M",f:"TBD",q:"",delayed:false},
+  {n:"Préstamos: cancelación",p:"Cancelación anticipada Prestamos",s:"Deprioritized",t:"BAU",sz:"S",f:"TBD",q:"",delayed:false},
+  {n:"Autenticación formulario Keycloak",p:"Business As Usual",s:"On-Hold",t:"BAU",sz:"M",f:"TBD",q:"",delayed:false},
+  {n:"DEBIN",p:"DEBIN",s:"On-Hold",t:"BAU",sz:"",f:"TBD",q:"",delayed:false},
+  {n:"Repetir Transferencia (IA)",p:"APP + AI",s:"Under Analysis",t:"Proyecto Estratégico",sz:"M",f:"TBD",q:"",delayed:false},
+  {n:"Dirección evolutivo (Predictivo & Geolocalización)",p:"Dirección evolutivo",s:"On-Hold",t:"BAU",sz:"M",f:"TBD",q:"",delayed:false},
+  {n:"Rediseño enrolamiento",p:"APP - Rediseño (Wallet-first)",s:"Under Analysis",t:"Proyecto Estratégico",sz:"L",f:"TBD",q:"",delayed:false},
+  {n:"Facetec",p:"Estrategia de prevención de fraude",s:"To-do",t:"Proyecto Estratégico",sz:"L",f:"TBD",q:"",delayed:false},
+  {n:"Rediseño cuentas",p:"APP - Rediseño (Wallet-first)",s:"To-do",t:"Proyecto Estratégico",sz:"M",f:"TBD",q:"",delayed:false},
+  {n:"Rediseño menú",p:"APP - Rediseño (Wallet-first)",s:"To-do",t:"Proyecto Estratégico",sz:"S",f:"TBD",q:"",delayed:false},
+  {n:"Evolutivo préstamos (Refinanciación)",p:"Evolutivo prestamos",s:"To-do",t:"BAU",sz:"M",f:"TBD",q:"",delayed:false},
+  {n:"Microcrédito pago de servicio",p:"Microcrédito pago de servicio",s:"To-do",t:"BAU",sz:"L",f:"TBD",q:"",delayed:false},
+  {n:"Rediseño home (componente cuentas IR)",p:"APP - Rediseño (Wallet-first)",s:"To-do",t:"Proyecto Estratégico",sz:"M",f:"TBD",q:"",delayed:false},
+  {n:"Carrusel de pagos",p:"APP - Rediseño (Wallet-first)",s:"To-do",t:"Proyecto Estratégico",sz:"L",f:"TBD",q:"",delayed:false},
+  {n:"Onboarding masivo",p:"Onboarding masivo",s:"To-do",t:"BAU",sz:"L",f:"TBD",q:"",delayed:false},
+  {n:"Config notificación",p:"Config notificación",s:"To-do",t:"BAU",sz:"L",f:"TBD",q:"",delayed:false},
+  {n:"Com. A 8406 – BCRA | Cobro con Transferencia (CCT)",p:"Com. A 8406 – BCRA (CCT)",s:"To-do",t:"Normativo",sz:"XL",f:"TBD",q:"",delayed:false},
+  {n:"Transferencias · Mejoras en mensajes de error",p:"Transferencias Individuos",s:"Under Analysis",t:"BAU",sz:"M",f:"TBD",q:"",delayed:false},
+  {n:"Normativo BCRA · vía denuncia estafas MOBILE",p:"Normativo MOBILE BCRA",s:"To-do",t:"Normativo",sz:"XS",f:"TBD",q:"",delayed:false},
+  {n:"APP + AI · Transferencia texto/voz",p:"APP + AI",s:"To-do",t:"Proyecto Estratégico",sz:"L",f:"TBD",q:"",delayed:false},
+  {n:"Migración flujo Botón IOL (VN & dólar MEP)",p:"Migración flujo Botón IOL",s:"To-do",t:"Proyecto Estratégico",sz:"S",f:"TBD",q:"",delayed:false},
+  {n:"Click to Pay Mandate Visa / TC Débito MOBILE",p:"Click to Pay Mandate Visa",s:"To-do",t:"BAU",sz:"XL",f:"TBD",q:"",delayed:false},
 ];
 
 var MILESTONES=[
@@ -291,39 +294,42 @@ var doneMilestones=MILESTONES.filter(function(m){return m.style==="nd-d";}).leng
 document.getElementById("tl-prog").style.width=Math.round(doneMilestones/MILESTONES.length*100)+"%";
 
 var SC={"Done":{color:"#16a34a",bc:"b-done"},"In-Progress":{color:"#E8001C",bc:"b-wip"},"To-do":{color:"#6B7280",bc:"b-todo"},"On-Hold":{color:"#d97706",bc:"b-hold"},"Under Analysis":{color:"#7C3AED",bc:"b-anal"},"Deprioritized":{color:"#9CA3AF",bc:"b-dep"}};
-var TC={"BAU":"b-bau","Nuevo":"b-nuevo","Carry Over":"b-carry","Mantenimiento":"b-mant"};
-var curS="all",curT="all",curTp="all",curJ="all",chart;
+var TC={"BAU":"b-bau","Proyecto Estratégico":"b-est","Normativo":"b-norm"};
+var curS="all",curT="all",curTp="all",curNI="all",chart;
 
-var jiraMap={};
-INITS.forEach(function(i){if(i.j){if(!jiraMap[i.j])jiraMap[i.j]={key:i.j,url:i.ju,cnt:0};jiraMap[i.j].cnt++;}});
-var JIRAS=Object.values(jiraMap).sort(function(a,b){return a.key.localeCompare(b.key);});
+var niMap={};
+INITS.forEach(function(i){if(i.p){if(!niMap[i.p])niMap[i.p]={name:i.p,cnt:0};niMap[i.p].cnt++;}});
+var NIS=Object.values(niMap).sort(function(a,b){return a.name.localeCompare(b.name);});
 
-function jiraClass(k){return k.startsWith("PRM")?"prm":k.startsWith("NMB")?"nmb":"other";}
-
-function buildJiraChips(search){
-  var chips=document.getElementById("jira-chips");chips.innerHTML="";
-  var list=JIRAS.filter(function(j){return !search||j.key.toLowerCase().includes(search.toLowerCase());});
-  if(list.length===0){chips.innerHTML='<span class="jira-empty">No se encontraron tickets</span>';return;}
-  list.forEach(function(j){
-    var chip=document.createElement("span");
-    chip.className="jira-chip "+jiraClass(j.key)+(curJ===j.key?" on":"");
-    chip.innerHTML=j.key+'<span class="cnt">'+j.cnt+'</span>';
-    chip.onclick=function(){setJira(j.key);};
-    chips.appendChild(chip);
+function buildNIChips(search){
+  var el=document.getElementById("ni-chips");el.innerHTML="";
+  var list=NIS.filter(function(n){return !search||n.name.toLowerCase().includes(search.toLowerCase());});
+  if(!list.length){el.innerHTML='<span class="chip-empty">Sin resultados</span>';return;}
+  list.forEach(function(ni){
+    var c=document.createElement("span");
+    c.className="chip ni"+(curNI===ni.name?" on":"");
+    c.innerHTML=ni.name+'<span class="cnt">'+ni.cnt+'</span>';
+    c.onclick=function(){setNI(ni.name);};
+    el.appendChild(c);
   });
 }
 
-function onJiraSearch(val){buildJiraChips(val);}
+function F(){return INITS.filter(function(i){return(curS==="all"||i.s===curS)&&(curT==="all"||i.sz===curT)&&(curTp==="all"||i.t===curTp)&&(curNI==="all"||i.p===curNI);});}
+function bT(){return INITS.filter(function(i){return(curS==="all"||i.s===curS)&&(curTp==="all"||i.t===curTp)&&(curNI==="all"||i.p===curNI);});}
+function bTp(){return INITS.filter(function(i){return(curS==="all"||i.s===curS)&&(curT==="all"||i.sz===curT)&&(curNI==="all"||i.p===curNI);});}
 
-function F(){return INITS.filter(function(i){return(curS==="all"||i.s===curS)&&(curT==="all"||i.sz===curT)&&(curTp==="all"||i.t===curTp)&&(curJ==="all"||i.j===curJ);});}
-function bT(){return INITS.filter(function(i){return(curS==="all"||i.s===curS)&&(curTp==="all"||i.t===curTp)&&(curJ==="all"||i.j===curJ);});}
-function bTp(){return INITS.filter(function(i){return(curS==="all"||i.s===curS)&&(curT==="all"||i.sz===curT)&&(curJ==="all"||i.j===curJ);});}
+function cardHTML(i){
+  var cls="cc"+(i.s==="Done"?" s-done":i.s==="In-Progress"?" s-wip"+(i.delayed?" delayed":""):" s-todo");
+  var sbc=(SC[i.s]||{bc:"b-todo"}).bc,tbc=TC[i.t]||"b-bau";
+  var projTag=i.p&&i.p!==i.n?'<div class="cp">'+i.p+'</div>':'';
+  return'<div class="'+cls+'"><div class="cn">'+i.n+'</div>'+projTag+'<div class="bgs"><span class="b '+sbc+'">'+i.s+'</span><span class="b '+tbc+'">'+i.t+'</span>'+(i.sz?'<span class="b b-sz">'+i.sz+'</span>':'')+(i.delayed?'<span class="b b-delay">Demorado</span>':'')+'</div></div>';
+}
 
 function render(){
   var f=F();
   var statuses=["Done","In-Progress","To-do","On-Hold","Under Analysis","Deprioritized"];
   var sizes=["XS","S","M","L","XL"];
-  var tipos=["BAU","Mantenimiento","Nuevo","Carry Over"];
+  var tipos=["BAU","Proyecto Estratégico","Normativo"];
 
   document.getElementById("cnt-all").textContent=f.length;
   statuses.forEach(function(s){var e=document.getElementById("cnt-"+s);if(e)e.textContent=f.filter(function(i){return i.s===s;}).length;});
@@ -350,21 +356,20 @@ function render(){
   var lb={XS:"XS · 1–3d",S:"S · 1 sem",M:"M · 1–2sp",L:"L · 3–4sp",XL:"XL · 5+sp"};
   sizes.forEach(function(sz){var cnt=f.filter(function(i){return i.sz===sz;}).length;be.innerHTML+='<div class="br"><div class="br-lbl">'+lb[sz]+'</div><div class="br-track"><div class="br-fill" style="width:'+Math.round(cnt/mx*100)+'%"></div></div><div class="br-val">'+cnt+'</div></div>';});
 
-  buildJiraChips(document.getElementById("jira-input").value);
+  buildNIChips(document.getElementById("ni-input").value);
 
-  var tc=document.getElementById("tl-cols");tc.innerHTML="";
+  var nodes=document.getElementById("tl-nodes");nodes.innerHTML="";
   MILESTONES.forEach(function(m){
     var items=f.filter(function(i){return i.f===m.f;});
     var col=document.createElement("div");col.className="tc";
-    var html='<div class="nd-wrap '+m.style+'">'+m.label+'</div><div class="tc-date'+(m.dclass?" "+m.dclass:"")+'">'+m.f+'</div><div class="tc-q">'+m.q+'</div><div class="tc-cards">';
+    var html='<div class="nd-wrap '+m.style+'">'+m.label+'</div>';
+    html+='<div class="tc-date'+(m.dclass?" "+m.dclass:"")+'">'+m.f+'</div>';
+    html+='<div class="tc-q">'+m.q+'</div>';
+    html+='<div class="tc-cards">';
     if(items.length===0){html+='<div class="nd-empty">—</div>';}
-    else{items.forEach(function(i){
-      var cls="cc"+(i.s==="Done"?" s-done":i.s==="In-Progress"?" s-wip"+(i.delayed?" delayed":""):" s-todo");
-      var sbc=(SC[i.s]||{bc:"b-todo"}).bc,tbc=TC[i.t]||"b-todo";
-      var jiraTag=i.j?'<a href="'+i.ju+'" target="_blank" class="b b-jira">'+i.j+'</a>':'';
-      html+='<div class="'+cls+'"><div class="cn">'+i.n+'</div><div class="bgs"><span class="b '+sbc+'">'+i.s+'</span><span class="b '+tbc+'">'+i.t+'</span>'+(i.sz?'<span class="b b-sz">'+i.sz+'</span>':'')+jiraTag+(i.delayed?'<span class="b b-delay">Demorado</span>':'')+'</div></div>';
-    });}
-    html+='</div>';col.innerHTML=html;tc.appendChild(col);
+    else{items.forEach(function(i){html+=cardHTML(i);});}
+    html+='</div>';
+    col.innerHTML=html;nodes.appendChild(col);
   });
 
   var tbdF=f.filter(function(i){return i.f==="TBD";});
@@ -373,9 +378,9 @@ function render(){
   if(tbdF.length===0){grid.innerHTML='<div class="empty-msg">Ninguna coincide con el filtro</div>';}
   else{tbdF.forEach(function(i){
     var cls="tbd-c"+(i.s==="On-Hold"?" s-hold":i.s==="Under Analysis"?" s-anal":i.s==="Deprioritized"?" s-dep":"");
-    var sbc=(SC[i.s]||{bc:"b-todo"}).bc,tbc=TC[i.t]||"b-todo";
-    var jiraTag=i.j?'<a href="'+i.ju+'" target="_blank" class="b b-jira">'+i.j+'</a>':'';
-    grid.innerHTML+='<div class="'+cls+'"><div class="tbd-name">'+i.n+'</div><div class="bgs"><span class="b '+sbc+'">'+i.s+'</span><span class="b '+tbc+'">'+i.t+'</span>'+(i.sz?'<span class="b b-sz">'+i.sz+'</span>':'')+jiraTag+'</div></div>';
+    var sbc=(SC[i.s]||{bc:"b-todo"}).bc,tbc=TC[i.t]||"b-bau";
+    var projTag=i.p&&i.p!==i.n?'<div class="tbd-proj">'+i.p+'</div>':'';
+    grid.innerHTML+='<div class="'+cls+'"><div class="tbd-name">'+i.n+'</div>'+projTag+'<div class="bgs"><span class="b '+sbc+'">'+i.s+'</span><span class="b '+tbc+'">'+i.t+'</span>'+(i.sz?'<span class="b b-sz">'+i.sz+'</span>':'')+'</div></div>';
   });}
 
   var af=document.getElementById("af-bar");af.querySelectorAll(".af-tag").forEach(function(t){t.remove();});
@@ -383,7 +388,7 @@ function render(){
   if(curS!=="all")active.push({label:"Estado: "+curS,clear:function(){setStatus("all");}});
   if(curT!=="all")active.push({label:"Talla: "+curT,clear:function(){setTalla("all");}});
   if(curTp!=="all")active.push({label:"Tipo: "+curTp,clear:function(){setTipo("all");}});
-  if(curJ!=="all")active.push({label:"JIRA: "+curJ,clear:function(){setJira("all");}});
+  if(curNI!=="all")active.push({label:"Iniciativa: "+curNI,clear:function(){setNI("all");}});
   document.getElementById("af-none").style.display=active.length===0?"":"none";
   active.forEach(function(a){var tag=document.createElement("span");tag.className="af-tag";tag.innerHTML=a.label+' <span style="font-size:11px">×</span>';tag.onclick=a.clear;af.appendChild(tag);});
 }
@@ -391,7 +396,7 @@ function render(){
 function setStatus(s){curS=(curS===s&&s!=="all")?"all":s;render();}
 function setTalla(t){curT=(curT===t&&t!=="all")?"all":t;render();}
 function setTipo(tp){curTp=(curTp===tp&&tp!=="all")?"all":tp;render();}
-function setJira(j){curJ=(curJ===j&&j!=="all")?"all":j;document.getElementById("jira-input").value="";render();}
+function setNI(ni){curNI=(curNI===ni&&ni!=="all")?"all":ni;document.getElementById("ni-input").value="";render();}
 
 render();
 </script>
